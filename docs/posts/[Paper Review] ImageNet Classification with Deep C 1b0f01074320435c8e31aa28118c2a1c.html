@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.427">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Blogs – paper-review-imagenet-classification-with-deep-c-1b0f01074320435c8e31aa28118c2a1c</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Blogs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+<section id="paper-review-imagenet-classification-with-deep-convolutional" class="level1">
+<h1>[Paper Review] ImageNet Classification with Deep Convolutional</h1>
+<p>Neural Networks (2012)</p>
+<section id="by--shreyans-jain" class="level3">
+<h3 class="anchored" data-anchor-id="by--shreyans-jain">by- Shreyans Jain</h3>
+<hr>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>The AI community back in 2006 had this common belief, “a better algorithm would make better decisions, regardless of the data.” As we know nothing happens unanimously, there were critics regardingFei Fei Li who thought otherwise. According to her, “the best algorithm wouldn’t work well if the data it learned from didn’t reflect the real world”. So she set out to test out her hypothesis with a small team. The first instance of ImageNet was published as a research poster in 2009, it was a large scale image database. The philosophy behind ImageNet model is that we should for once shift our attendance from models to data. The dataset took two and a half years to complete. It consisted of 3.2 million labelled images, separated into 5,247 categories, sorted into 12 subtrees like “mammal,” “vehicle,” and “furniture.” It later evolved to 15 million images and 22,000 categories when this paper was published.</p>
+</section>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>Near human like recognition capabilities had been achieved on small datasets of similar images like the MNIST database. But objects in real settings exhibit variability and hence require a very large database. As I mentioned earlier for the first time, a one of a kind database was published that had millions of labeled images. An annual competition called the ImageNet Large-Scale Visual Recognition Challenge (ILSVRC) has been held which led the team of highly motivated researchers to finally pick up the challenge. The current models were also prohibitively large and expensive to train.</p>
+</section>
+<section id="alexnet" class="level2">
+<h2 class="anchored" data-anchor-id="alexnet">AlexNet</h2>
+<p>The model developed was named AlexNet by the authors. The complete details of developing it are:</p>
+<section id="data-preprocessing" class="level3">
+<h3 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing:</h3>
+<p>The ImageNet contained images of variable resolutions which presents major problems.</p>
+<p>Neural networks expect inputs to be of the same shape, hence require Using high res images may also present the problem of overfitting, reducing the complexity of data encourages the model to learn more generalised features. Eg a stone in a picture of a beach presents no significance but a high res image may force the network to also see it as a feature of a beach.</p>
+</section>
+<section id="architecture" class="level3">
+<h3 class="anchored" data-anchor-id="architecture">Architecture:</h3>
+<ol type="1">
+<li><p>The nn consisted of 8 layers, 5 convolutional and 3 fully connected. This number was reached to ensure maximum accuracy and was observed that dropping even one of the fully connected layers presented a major decrease in accuracy.</p></li>
+<li><p>Activation Function: ReLU (Rectified liner Unit- max(0,x) ) was used as the activation function between the layers. The usual activation functions are sigmoid and tanh(x). But they present the challenge of saturation in the neural network. ReLU also allowed for faster training as its less computationally expensive.</p>
+<img src="[Paper Review] ImageNet Classification with Deep C 1b0f01074320435c8e31aa28118c2a1c/Untitled.png" class="img-fluid" alt="Untitled">
+<p>The heart of neural network in a way lies in the activation function as it enables it to learn something non-linear. “Two dense layers with nothing in between are no better than a single dense layer by itself. Dense layers by themselves can never move us out of the world of lines and planes. What we need is something&nbsp;<em>nonlinear</em>. What we need are activation functions.”</p>
+<img src="[Paper Review] ImageNet Classification with Deep C 1b0f01074320435c8e31aa28118c2a1c/Untitled 1.png" class="img-fluid" alt="Untitled"></li>
+<li><p>Parallelizing Training: The state of the art GPU was a GTX 580 3GB (Which was succeeded with a superior GTX 680 just two months after the release of the paper). The GPUs were connected in <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjcxYrMi9j_AhWfSWwGHV5uDM4QFnoECCYQAQ&amp;url=https%3A%2F%2Fdocs.nvidia.com%2Fgameworks%2Fcontent%2Ftechnologies%2Fdesktop%2Fsli.htm&amp;usg=AOvVaw0F_ERb8-NAOOfUIgdkw_c3&amp;opi=89978449">SLI</a> which enabled to read and write to each others memory without going to the host machine. The layers are connected in a way that tries to minimize communication between the GPUs while still enabling effective training. A schematic simplified representation is shown in the image below.</p>
+<img src="[Paper Review] ImageNet Classification with Deep C 1b0f01074320435c8e31aa28118c2a1c/Untitled 2.png" class="img-fluid" alt="Untitled">
+<img src="[Paper Review] ImageNet Classification with Deep C 1b0f01074320435c8e31aa28118c2a1c/20230623_192259.jpg" class="img-fluid" alt="20230623_192259.jpg"></li>
+<li><p>Pooling: Given below is how average pooling works here the stride=1 and neighborhood size=3, similarly Alexnet employed stride=2 and neighborhood size=3. Through hyperparameter tuning it was found that these particular values provided a performance boost. Additionally it was experimentally found that this helped prevent overfitting.</p>
+<img src="[Paper Review] ImageNet Classification with Deep C 1b0f01074320435c8e31aa28118c2a1c/Untitled 3.png" class="img-fluid" alt="Untitled"></li>
+<li><p>Local Response Normalization: Features that tend to produce activations of very different sizes can make for unstable training behavior. In shallow networks we often use scikit learns StandardScaler to bring the input on a similar scale so there is no bias due to magnitude of numeric values. Somewhat similar concept applies here, we normalize the responses in a certain neighborhood.</p>
+<p><strong>normalized_response = original_response / (k + alpha * sum(squared_responses)</strong>).</p></li>
+</ol>
+<ul>
+<li><code>k</code> is a constant hyperparameter to avoid division by zero and control the amplification factor.</li>
+<li><code>alpha</code> is a hyperparameter that determines the degree of normalization.</li>
+<li><code>squared_responses</code> represents the squared values of the responses within the local neighborhood window</li>
+</ul>
+<p>This aids generalization and prevents overfitting. The purpose is to amplify the output of neurons that have relatively large activation. This practice has reduced nowadays and in fact, we have a special kind of layer that can do this, the&nbsp;<strong>batch normalization layer</strong>. A batch normalization layer looks at each batch as it comes in, first normalizing the batch with its own mean and standard deviation, and then also putting the data on a new scale with two trainable rescaling parameters. Batchnorm, in effect, performs a kind of coordinated rescaling of its inputs.</p>
+</section>
+</section>
+<section id="reducing-overfitting" class="level2">
+<h2 class="anchored" data-anchor-id="reducing-overfitting">Reducing Overfitting</h2>
+<p>The network architecture consisted of 60 million parameters. Although the training set is large its insufficient to prevent overfitting. It was taken care of in the following to ways.</p>
+<section id="data-augmentation" class="level3">
+<h3 class="anchored" data-anchor-id="data-augmentation">Data Augmentation</h3>
+<p>This refers to artificially increasing the size of the dataset. The stroke of genius here is that we can do so on free compute (time wise) the images are transformed on a cpu while the gpu is busy training the previous set of images . The data was augmented in two ways, the first was generating image translations and horizontal reflections. We do this by extracting random 224 × 224 patches (and their horizontal reflections) from the 256×256 images. The second is altering RGB values by PCA. To each image certain multiples of found pca components are added. This scheme works as an object lets say a chair is invariant to intensity of illumination or colour.</p>
+</section>
+<section id="dropout" class="level3">
+<h3 class="anchored" data-anchor-id="dropout">Dropout</h3>
+<p>Overfitting makes the model learn spurious patterns. Since these spurious patterns are so specific they are very easy to break if that particular neuron is deactivated. In dropout we randomly drop out some fraction of input units, this makes it very hard to overfit and more generalized patterns are learned as they are more prominent in every pass and are present even after dropout. Here dropout was kept at 50%. Although it does increase the number of iteration required.</p>
+</section>
+</section>
+<section id="details-of-learning" class="level2">
+<h2 class="anchored" data-anchor-id="details-of-learning">Details of learning:</h2>
+<p>Stochastic gradient descent was used. The batch size of 128, momentum of 0.9 and weight decay =0.0005.</p>
+<p>Momentum: Momentum is a technique that helps accelerate the convergence of the optimization process and overcome the local minima in the loss landscape. It simulates the behavior of a moving object with momentum. In the context of neural networks, it introduces a “velocity” term that influences the update of the model’s parameters.</p>
+<p><strong>velocity = momentum * velocity - learning_rate * gradient parameters = parameters + velocity</strong></p>
+<ul>
+<li><code>velocity</code> represents the accumulated velocity from previous iterations.</li>
+<li><code>momentum</code> is a hyperparameter that determines the influence of the previous velocities on the current update.</li>
+<li><code>learning_rate</code> is the rate at which the model learns from the gradients.</li>
+<li><code>gradient</code> represents the gradient of the loss function with respect to the parameters.</li>
+<li><code>parameters</code> are the model’s weights and biases.</li>
+</ul>
+<p>Decay is to prevent the model from relying on any single feature, so its a penalty added to the loss function. <strong>parameters = parameters - learning_rate * (gradient + weight_decay * parameters)</strong></p>
+<p>It penalizes larger weights more.</p>
+<p>Also the weights instead of being random were initialised as follows, “We initialized the weights in each layer from a zero-mean Gaussian distribution with standard deviation 0.01. We initialized the neuron biases in the second, fourth, and fifth convolutional layers, as well as in the fully-connected hidden layers, with the constant 1. “ This was to accelerated learning by providing ReLU with positive inputs.</p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Learning rate was kept constant and manually adjusted by seeing the validation error rate.</p>
+<p>The network won the ILSCVRC-2010 with top-1 and top-5test set error rates of 37.5% and 17.0%5.</p>
+</section>
+<section id="future-scope" class="level2">
+<h2 class="anchored" data-anchor-id="future-scope">Future Scope</h2>
+<p>Use of unsupervised learning to find patterns in data could potentially help. Like setting weights based on it and then tuning it by supervised learning has the potential to increase the accuracy. Further doing this task on video sequences it can see how data evolves and can help in identifying features even better.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

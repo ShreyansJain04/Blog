@@ -1,7 +1,7 @@
 ---
 title: "[Paper Review] ImageNet Classification with Deep Convolutional Neural Networks (2012)"
 author: "Shreyans Jain"
-date: "19/10/2023"
+date: "06/23/2023"
 
 ---
 # [Paper Review] ImageNet Classification with Deep Convolutional

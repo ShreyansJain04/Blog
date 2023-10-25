@@ -5,8 +5,9 @@
 <meta name="generator" content="quarto-1.3.427">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Shreyans Jain">
-<meta name="dcterms.date" content="2023-10-24">
+<meta name="dcterms.date" content="2023-10-19">
 
 <title>Blogs - Fisher Information</title>
 <style>
@@ -148,7 +149,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Shreyans Jain </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 19, 2023</p>
+      </div>
+    </div>
     
       
     </div>
@@ -164,6 +177,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="fisher-information" class="level1">
+<h1>Fisher Information</h1>
 <p>Used to find out how much information a particular random variable has about an unknown parameter. Example: If we have a coin and we want to know if it is fair or not, we can toss it 100 times and count the number of heads. If we get 100 heads, we can be pretty sure that the coin is not fair. If we get 50 heads, we can’t be sure. If we get 0 heads, we can be pretty sure that the coin is not fair. So, the number of heads gives us information about the fairness of the coin. The Fisher information is a measure of how much information a random variable has about an unknown parameter.</p>
 <p>The math: Its defined as the variance of the score of log likelihood of a random variable. But the the partial derivative of the log-likelihood behaves similarly to a random variable, just like y. It possesses both a mean and a variance.</p>
 <p>When the variance of this derivative is smaller, there is a higher probability that the observed value y will closely match the true mean of the probability distribution of y. In simpler terms, more information about the true mean of y is embedded within the random variable y itself. Conversely, when the variance of the partial derivative of ℓ(λ | y=y) is greater, the information contained in y about its true mean diminishes.</p>
@@ -229,6 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To make it more intuitive, in our previous example if we can crudely say that when the results follow a ‘pattern’ and the results are less varied we actually have more information about the biasing.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

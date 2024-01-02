@@ -1,0 +1,3306 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.427">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Blogs - Geography-aware SSL for automatic brick kiln detection from satellite imagery TASK</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Blogs</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Geography-aware SSL for automatic brick kiln detection from satellite imagery TASK</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">Overview</h3>
+<p>Initially we train EfficientNet model on 5% of the data and then test it on 50% of the test data. Then we create the jigsaw pre training dataset on 45% of the images. Then the pretrained model is fine tuned on the 5% of images and tested on 50% of the data. Additional experiments like using pretrained weights for EfficientNet and varying hyperparameters have been carried out.</p>
+<section id="import-libraries" class="level4">
+<h4 class="anchored" data-anchor-id="import-libraries">Import Libraries</h4>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:51:01.273612Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:51:01.273231Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:51:03.373943Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:51:03.373086Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:51:01.273581Z&quot;}" data-trusted="true" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> DataLoader, Dataset, random_split</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.transforms <span class="im">import</span> ToTensor, Resize, Compose</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.utils <span class="im">import</span> save_image</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> glob <span class="im">import</span> glob</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.datasets <span class="im">import</span> ImageFolder</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Preparing DataLoaders</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:51:03.376542Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:51:03.375658Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:51:12.174990Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:51:12.173998Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:51:03.376503Z&quot;}" data-outputid="296f6361-995b-41c5-9999-7243273792f3" data-trusted="true" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.datasets <span class="im">import</span> CIFAR10</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>transform <span class="op">=</span> Compose([</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Resize images to 33x33 to make it divisible by 3 for the later jigsaw task.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Resize((<span class="dv">33</span>, <span class="dv">33</span>)),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    ToTensor()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load CIFAR-10 dataset</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> CIFAR10(root<span class="op">=</span><span class="st">'./data'</span>, train<span class="op">=</span><span class="va">True</span>, download<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                  transform<span class="op">=</span>transform)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Split dataset</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>train_size <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.05</span> <span class="op">*</span> <span class="bu">len</span>(dataset))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>pretrain_size <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.45</span> <span class="op">*</span> <span class="bu">len</span>(dataset))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>test_size <span class="op">=</span> <span class="bu">len</span>(dataset) <span class="op">-</span> train_size <span class="op">-</span> pretrain_size</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>train_dataset, pretrain_dataset, test_dataset <span class="op">=</span> random_split(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    dataset, [train_size, pretrain_size, test_size])</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data loaders</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(train_dataset, batch_size<span class="op">=</span><span class="dv">32</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>pretrain_loader <span class="op">=</span> DataLoader(pretrain_dataset, batch_size<span class="op">=</span><span class="dv">32</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>test_loader <span class="op">=</span> DataLoader(test_dataset, batch_size<span class="op">=</span><span class="dv">32</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data/cifar-10-python.tar.gz
+Extracting ./data/cifar-10-python.tar.gz to ./data</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 170498071/170498071 [00:04&lt;00:00, 35018724.81it/s]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="initial-training-on-5-of-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="initial-training-on-5-of-the-data">Initial training on 5% of the data</h3>
+<p>Initially using the efficient net model without pretraining.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:51:12.176526Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:51:12.176235Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:51:15.281757Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:51:15.280908Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:51:12.176501Z&quot;}" data-trusted="true" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> models.efficientnet_b0(pretrained<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>num_ftrs <span class="op">=</span> model.classifier[<span class="dv">1</span>].in_features</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>model.classifier[<span class="dv">1</span>] <span class="op">=</span> nn.Linear(num_ftrs, <span class="dv">10</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.to(device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/conda/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/opt/conda/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:51:15.284068Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:51:15.283746Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:51:15.291071Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:51:15.290078Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:51:15.284041Z&quot;}" data-trusted="true" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss function and optimizer</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.SGD(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>, momentum<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>scheduler <span class="op">=</span> optim.lr_scheduler.StepLR(optimizer, step_size<span class="op">=</span><span class="dv">7</span>, gamma<span class="op">=</span><span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:51:15.292807Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:51:15.292409Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:52:40.730571Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:52:40.729563Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:51:15.292771Z&quot;}" data-trusted="true" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># train on only 5% of the data</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):  <span class="co"># loop over the dataset multiple times</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    scheduler.step()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, data <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader, <span class="dv">0</span>):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># get the inputs; data is a list of [inputs, labels]</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        inputs, targets <span class="op">=</span> data</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        inputs <span class="op">=</span> inputs.to(device)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        targets <span class="op">=</span> targets.to(device)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># zero the parameter gradients</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># forward + backward + optimize</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(outputs, targets)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print statistics</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">9</span>:    <span class="co"># print every 10 mini-batches</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'[</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%5d</span><span class="st">] loss: </span><span class="sc">%.3f</span><span class="st">, lr: </span><span class="sc">%.6f</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>                  (epoch <span class="op">+</span> <span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>, running_loss <span class="op">/</span> <span class="dv">10</span>, scheduler.get_lr()[<span class="dv">0</span>]))</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>            running_loss <span class="op">=</span> <span class="fl">0.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/conda/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:139: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/opt/conda/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:389: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1,    10] loss: 2.328, lr: 0.010000
+[1,    20] loss: 2.358, lr: 0.010000
+[1,    30] loss: 2.424, lr: 0.010000
+[1,    40] loss: 2.430, lr: 0.010000
+[1,    50] loss: 2.421, lr: 0.010000
+[1,    60] loss: 2.342, lr: 0.010000
+[1,    70] loss: 2.438, lr: 0.010000
+[2,    10] loss: 2.264, lr: 0.010000
+[2,    20] loss: 2.163, lr: 0.010000
+[2,    30] loss: 2.278, lr: 0.010000
+[2,    40] loss: 2.297, lr: 0.010000
+[2,    50] loss: 2.296, lr: 0.010000
+[2,    60] loss: 2.177, lr: 0.010000
+[2,    70] loss: 2.174, lr: 0.010000
+[3,    10] loss: 2.157, lr: 0.010000
+[3,    20] loss: 2.228, lr: 0.010000
+[3,    30] loss: 2.122, lr: 0.010000
+[3,    40] loss: 2.103, lr: 0.010000
+[3,    50] loss: 1.991, lr: 0.010000
+[3,    60] loss: 2.131, lr: 0.010000
+[3,    70] loss: 1.991, lr: 0.010000
+[4,    10] loss: 2.012, lr: 0.010000
+[4,    20] loss: 2.004, lr: 0.010000
+[4,    30] loss: 2.090, lr: 0.010000
+[4,    40] loss: 1.979, lr: 0.010000
+[4,    50] loss: 2.113, lr: 0.010000
+[4,    60] loss: 1.950, lr: 0.010000
+[4,    70] loss: 2.019, lr: 0.010000
+[5,    10] loss: 2.071, lr: 0.010000
+[5,    20] loss: 1.982, lr: 0.010000
+[5,    30] loss: 1.906, lr: 0.010000
+[5,    40] loss: 1.875, lr: 0.010000
+[5,    50] loss: 1.822, lr: 0.010000
+[5,    60] loss: 1.826, lr: 0.010000
+[5,    70] loss: 1.831, lr: 0.010000
+[6,    10] loss: 1.756, lr: 0.010000
+[6,    20] loss: 1.784, lr: 0.010000
+[6,    30] loss: 1.785, lr: 0.010000
+[6,    40] loss: 1.761, lr: 0.010000
+[6,    50] loss: 1.791, lr: 0.010000
+[6,    60] loss: 1.768, lr: 0.010000
+[6,    70] loss: 1.757, lr: 0.010000
+[7,    10] loss: 1.610, lr: 0.000100
+[7,    20] loss: 1.639, lr: 0.000100
+[7,    30] loss: 1.587, lr: 0.000100
+[7,    40] loss: 1.628, lr: 0.000100
+[7,    50] loss: 1.569, lr: 0.000100
+[7,    60] loss: 1.605, lr: 0.000100
+[7,    70] loss: 1.606, lr: 0.000100
+[8,    10] loss: 1.487, lr: 0.001000
+[8,    20] loss: 1.423, lr: 0.001000
+[8,    30] loss: 1.503, lr: 0.001000
+[8,    40] loss: 1.381, lr: 0.001000
+[8,    50] loss: 1.557, lr: 0.001000
+[8,    60] loss: 1.475, lr: 0.001000
+[8,    70] loss: 1.587, lr: 0.001000
+[9,    10] loss: 1.479, lr: 0.001000
+[9,    20] loss: 1.454, lr: 0.001000
+[9,    30] loss: 1.471, lr: 0.001000
+[9,    40] loss: 1.517, lr: 0.001000
+[9,    50] loss: 1.484, lr: 0.001000
+[9,    60] loss: 1.393, lr: 0.001000
+[9,    70] loss: 1.527, lr: 0.001000
+[10,    10] loss: 1.471, lr: 0.001000
+[10,    20] loss: 1.468, lr: 0.001000
+[10,    30] loss: 1.492, lr: 0.001000
+[10,    40] loss: 1.428, lr: 0.001000
+[10,    50] loss: 1.402, lr: 0.001000
+[10,    60] loss: 1.383, lr: 0.001000
+[10,    70] loss: 1.430, lr: 0.001000
+[11,    10] loss: 1.348, lr: 0.001000
+[11,    20] loss: 1.430, lr: 0.001000
+[11,    30] loss: 1.350, lr: 0.001000
+[11,    40] loss: 1.424, lr: 0.001000
+[11,    50] loss: 1.435, lr: 0.001000
+[11,    60] loss: 1.350, lr: 0.001000
+[11,    70] loss: 1.419, lr: 0.001000
+[12,    10] loss: 1.310, lr: 0.001000
+[12,    20] loss: 1.326, lr: 0.001000
+[12,    30] loss: 1.324, lr: 0.001000
+[12,    40] loss: 1.363, lr: 0.001000
+[12,    50] loss: 1.345, lr: 0.001000
+[12,    60] loss: 1.358, lr: 0.001000
+[12,    70] loss: 1.363, lr: 0.001000
+[13,    10] loss: 1.299, lr: 0.001000
+[13,    20] loss: 1.386, lr: 0.001000
+[13,    30] loss: 1.237, lr: 0.001000
+[13,    40] loss: 1.296, lr: 0.001000
+[13,    50] loss: 1.360, lr: 0.001000
+[13,    60] loss: 1.306, lr: 0.001000
+[13,    70] loss: 1.298, lr: 0.001000
+[14,    10] loss: 1.249, lr: 0.000010
+[14,    20] loss: 1.216, lr: 0.000010
+[14,    30] loss: 1.391, lr: 0.000010
+[14,    40] loss: 1.311, lr: 0.000010
+[14,    50] loss: 1.243, lr: 0.000010
+[14,    60] loss: 1.258, lr: 0.000010
+[14,    70] loss: 1.303, lr: 0.000010
+[15,    10] loss: 1.274, lr: 0.000100
+[15,    20] loss: 1.280, lr: 0.000100
+[15,    30] loss: 1.227, lr: 0.000100
+[15,    40] loss: 1.341, lr: 0.000100
+[15,    50] loss: 1.223, lr: 0.000100
+[15,    60] loss: 1.319, lr: 0.000100
+[15,    70] loss: 1.239, lr: 0.000100
+[16,    10] loss: 1.191, lr: 0.000100
+[16,    20] loss: 1.270, lr: 0.000100
+[16,    30] loss: 1.278, lr: 0.000100
+[16,    40] loss: 1.256, lr: 0.000100
+[16,    50] loss: 1.224, lr: 0.000100
+[16,    60] loss: 1.255, lr: 0.000100
+[16,    70] loss: 1.278, lr: 0.000100
+[17,    10] loss: 1.213, lr: 0.000100
+[17,    20] loss: 1.173, lr: 0.000100
+[17,    30] loss: 1.295, lr: 0.000100
+[17,    40] loss: 1.296, lr: 0.000100
+[17,    50] loss: 1.249, lr: 0.000100
+[17,    60] loss: 1.219, lr: 0.000100
+[17,    70] loss: 1.222, lr: 0.000100
+[18,    10] loss: 1.214, lr: 0.000100
+[18,    20] loss: 1.156, lr: 0.000100
+[18,    30] loss: 1.156, lr: 0.000100
+[18,    40] loss: 1.182, lr: 0.000100
+[18,    50] loss: 1.184, lr: 0.000100
+[18,    60] loss: 1.283, lr: 0.000100
+[18,    70] loss: 1.223, lr: 0.000100
+[19,    10] loss: 1.261, lr: 0.000100
+[19,    20] loss: 1.191, lr: 0.000100
+[19,    30] loss: 1.284, lr: 0.000100
+[19,    40] loss: 1.195, lr: 0.000100
+[19,    50] loss: 1.265, lr: 0.000100
+[19,    60] loss: 1.107, lr: 0.000100
+[19,    70] loss: 1.274, lr: 0.000100
+[20,    10] loss: 1.174, lr: 0.000100
+[20,    20] loss: 1.226, lr: 0.000100
+[20,    30] loss: 1.393, lr: 0.000100
+[20,    40] loss: 1.228, lr: 0.000100
+[20,    50] loss: 1.149, lr: 0.000100
+[20,    60] loss: 1.266, lr: 0.000100
+[20,    70] loss: 1.183, lr: 0.000100
+[21,    10] loss: 1.277, lr: 0.000001
+[21,    20] loss: 1.275, lr: 0.000001
+[21,    30] loss: 1.211, lr: 0.000001
+[21,    40] loss: 1.140, lr: 0.000001
+[21,    50] loss: 1.232, lr: 0.000001
+[21,    60] loss: 1.264, lr: 0.000001
+[21,    70] loss: 1.235, lr: 0.000001
+[22,    10] loss: 1.156, lr: 0.000010
+[22,    20] loss: 1.378, lr: 0.000010
+[22,    30] loss: 1.307, lr: 0.000010
+[22,    40] loss: 1.241, lr: 0.000010
+[22,    50] loss: 1.132, lr: 0.000010
+[22,    60] loss: 1.131, lr: 0.000010
+[22,    70] loss: 1.195, lr: 0.000010
+[23,    10] loss: 1.265, lr: 0.000010
+[23,    20] loss: 1.176, lr: 0.000010
+[23,    30] loss: 1.214, lr: 0.000010
+[23,    40] loss: 1.263, lr: 0.000010
+[23,    50] loss: 1.235, lr: 0.000010
+[23,    60] loss: 1.250, lr: 0.000010
+[23,    70] loss: 1.198, lr: 0.000010
+[24,    10] loss: 1.189, lr: 0.000010
+[24,    20] loss: 1.263, lr: 0.000010
+[24,    30] loss: 1.266, lr: 0.000010
+[24,    40] loss: 1.261, lr: 0.000010
+[24,    50] loss: 1.160, lr: 0.000010
+[24,    60] loss: 1.146, lr: 0.000010
+[24,    70] loss: 1.182, lr: 0.000010
+[25,    10] loss: 1.134, lr: 0.000010
+[25,    20] loss: 1.241, lr: 0.000010
+[25,    30] loss: 1.274, lr: 0.000010
+[25,    40] loss: 1.113, lr: 0.000010
+[25,    50] loss: 1.316, lr: 0.000010
+[25,    60] loss: 1.251, lr: 0.000010
+[25,    70] loss: 1.189, lr: 0.000010</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:52:40.732015Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:52:40.731693Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:52:40.800220Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:52:40.799094Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:52:40.731989Z&quot;}" data-trusted="true" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model state dict</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>torch.save(model.state_dict(),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">'./cifar10_5percent_scheduler_pretrained_false.pth'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using a pretrained (on imagenet) efficienet model</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:52:40.802126Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:52:40.801748Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:52:41.337351Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:52:41.336335Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:52:40.802088Z&quot;}" data-trusted="true" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> models.efficientnet_b0(pretrained<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>num_ftrs <span class="op">=</span> model.classifier[<span class="dv">1</span>].in_features</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>model.classifier[<span class="dv">1</span>] <span class="op">=</span> nn.Linear(num_ftrs, <span class="dv">10</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.to(device)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss function and optimizer</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.SGD(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>, momentum<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>scheduler <span class="op">=</span> optim.lr_scheduler.StepLR(optimizer, step_size<span class="op">=</span><span class="dv">7</span>, gamma<span class="op">=</span><span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/conda/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=EfficientNet_B0_Weights.IMAGENET1K_V1`. You can also use `weights=EfficientNet_B0_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/efficientnet_b0_rwightman-3dd342df.pth" to /root/.cache/torch/hub/checkpoints/efficientnet_b0_rwightman-3dd342df.pth
+100%|██████████| 20.5M/20.5M [00:00&lt;00:00, 88.2MB/s]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:52:41.339380Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:52:41.338739Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:54:01.065481Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:54:01.064519Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:52:41.339344Z&quot;}" data-trusted="true" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># train on only 5% of the data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):  <span class="co"># loop over the dataset multiple times</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    scheduler.step()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, data <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader, <span class="dv">0</span>):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># get the inputs; data is a list of [inputs, labels]</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        inputs, targets <span class="op">=</span> data</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        inputs <span class="op">=</span> inputs.to(device)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        targets <span class="op">=</span> targets.to(device)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># zero the parameter gradients</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># forward + backward + optimize</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(outputs, targets)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># print statistics</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">9</span>:    <span class="co"># print every 10 mini-batches</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'[</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%5d</span><span class="st">] loss: </span><span class="sc">%.3f</span><span class="st">, lr: </span><span class="sc">%.6f</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>                  (epoch <span class="op">+</span> <span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>, running_loss <span class="op">/</span> <span class="dv">10</span>, scheduler.get_lr()[<span class="dv">0</span>]))</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>            running_loss <span class="op">=</span> <span class="fl">0.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1,    10] loss: 2.318, lr: 0.010000
+[1,    20] loss: 2.172, lr: 0.010000
+[1,    30] loss: 2.034, lr: 0.010000
+[1,    40] loss: 2.021, lr: 0.010000
+[1,    50] loss: 2.026, lr: 0.010000
+[1,    60] loss: 1.876, lr: 0.010000
+[1,    70] loss: 2.031, lr: 0.010000
+[2,    10] loss: 1.759, lr: 0.010000
+[2,    20] loss: 1.972, lr: 0.010000
+[2,    30] loss: 1.795, lr: 0.010000
+[2,    40] loss: 1.794, lr: 0.010000
+[2,    50] loss: 1.840, lr: 0.010000
+[2,    60] loss: 1.696, lr: 0.010000
+[2,    70] loss: 1.706, lr: 0.010000
+[3,    10] loss: 1.655, lr: 0.010000
+[3,    20] loss: 1.568, lr: 0.010000
+[3,    30] loss: 1.538, lr: 0.010000
+[3,    40] loss: 1.441, lr: 0.010000
+[3,    50] loss: 1.573, lr: 0.010000
+[3,    60] loss: 1.372, lr: 0.010000
+[3,    70] loss: 1.548, lr: 0.010000
+[4,    10] loss: 1.159, lr: 0.010000
+[4,    20] loss: 1.298, lr: 0.010000
+[4,    30] loss: 1.207, lr: 0.010000
+[4,    40] loss: 1.203, lr: 0.010000
+[4,    50] loss: 1.264, lr: 0.010000
+[4,    60] loss: 1.099, lr: 0.010000
+[4,    70] loss: 1.203, lr: 0.010000
+[5,    10] loss: 0.845, lr: 0.010000
+[5,    20] loss: 0.876, lr: 0.010000
+[5,    30] loss: 0.835, lr: 0.010000
+[5,    40] loss: 1.025, lr: 0.010000
+[5,    50] loss: 1.056, lr: 0.010000
+[5,    60] loss: 0.973, lr: 0.010000
+[5,    70] loss: 0.939, lr: 0.010000
+[6,    10] loss: 0.764, lr: 0.010000
+[6,    20] loss: 0.769, lr: 0.010000
+[6,    30] loss: 0.815, lr: 0.010000
+[6,    40] loss: 0.803, lr: 0.010000
+[6,    50] loss: 0.783, lr: 0.010000
+[6,    60] loss: 0.802, lr: 0.010000
+[6,    70] loss: 0.749, lr: 0.010000
+[7,    10] loss: 0.652, lr: 0.000100
+[7,    20] loss: 0.688, lr: 0.000100
+[7,    30] loss: 0.528, lr: 0.000100
+[7,    40] loss: 0.492, lr: 0.000100
+[7,    50] loss: 0.522, lr: 0.000100
+[7,    60] loss: 0.529, lr: 0.000100
+[7,    70] loss: 0.575, lr: 0.000100
+[8,    10] loss: 0.488, lr: 0.001000
+[8,    20] loss: 0.467, lr: 0.001000
+[8,    30] loss: 0.452, lr: 0.001000
+[8,    40] loss: 0.436, lr: 0.001000
+[8,    50] loss: 0.386, lr: 0.001000
+[8,    60] loss: 0.386, lr: 0.001000
+[8,    70] loss: 0.444, lr: 0.001000
+[9,    10] loss: 0.386, lr: 0.001000
+[9,    20] loss: 0.416, lr: 0.001000
+[9,    30] loss: 0.440, lr: 0.001000
+[9,    40] loss: 0.333, lr: 0.001000
+[9,    50] loss: 0.352, lr: 0.001000
+[9,    60] loss: 0.347, lr: 0.001000
+[9,    70] loss: 0.462, lr: 0.001000
+[10,    10] loss: 0.315, lr: 0.001000
+[10,    20] loss: 0.345, lr: 0.001000
+[10,    30] loss: 0.332, lr: 0.001000
+[10,    40] loss: 0.327, lr: 0.001000
+[10,    50] loss: 0.369, lr: 0.001000
+[10,    60] loss: 0.333, lr: 0.001000
+[10,    70] loss: 0.279, lr: 0.001000
+[11,    10] loss: 0.284, lr: 0.001000
+[11,    20] loss: 0.333, lr: 0.001000
+[11,    30] loss: 0.341, lr: 0.001000
+[11,    40] loss: 0.380, lr: 0.001000
+[11,    50] loss: 0.385, lr: 0.001000
+[11,    60] loss: 0.328, lr: 0.001000
+[11,    70] loss: 0.251, lr: 0.001000
+[12,    10] loss: 0.258, lr: 0.001000
+[12,    20] loss: 0.294, lr: 0.001000
+[12,    30] loss: 0.302, lr: 0.001000
+[12,    40] loss: 0.330, lr: 0.001000
+[12,    50] loss: 0.308, lr: 0.001000
+[12,    60] loss: 0.253, lr: 0.001000
+[12,    70] loss: 0.322, lr: 0.001000
+[13,    10] loss: 0.261, lr: 0.001000
+[13,    20] loss: 0.243, lr: 0.001000
+[13,    30] loss: 0.249, lr: 0.001000
+[13,    40] loss: 0.270, lr: 0.001000
+[13,    50] loss: 0.266, lr: 0.001000
+[13,    60] loss: 0.281, lr: 0.001000
+[13,    70] loss: 0.261, lr: 0.001000
+[14,    10] loss: 0.268, lr: 0.000010
+[14,    20] loss: 0.250, lr: 0.000010
+[14,    30] loss: 0.253, lr: 0.000010
+[14,    40] loss: 0.237, lr: 0.000010
+[14,    50] loss: 0.252, lr: 0.000010
+[14,    60] loss: 0.267, lr: 0.000010
+[14,    70] loss: 0.288, lr: 0.000010
+[15,    10] loss: 0.222, lr: 0.000100
+[15,    20] loss: 0.202, lr: 0.000100
+[15,    30] loss: 0.256, lr: 0.000100
+[15,    40] loss: 0.261, lr: 0.000100
+[15,    50] loss: 0.241, lr: 0.000100
+[15,    60] loss: 0.240, lr: 0.000100
+[15,    70] loss: 0.277, lr: 0.000100
+[16,    10] loss: 0.242, lr: 0.000100
+[16,    20] loss: 0.242, lr: 0.000100
+[16,    30] loss: 0.269, lr: 0.000100
+[16,    40] loss: 0.217, lr: 0.000100
+[16,    50] loss: 0.215, lr: 0.000100
+[16,    60] loss: 0.241, lr: 0.000100
+[16,    70] loss: 0.228, lr: 0.000100
+[17,    10] loss: 0.258, lr: 0.000100
+[17,    20] loss: 0.221, lr: 0.000100
+[17,    30] loss: 0.221, lr: 0.000100
+[17,    40] loss: 0.266, lr: 0.000100
+[17,    50] loss: 0.296, lr: 0.000100
+[17,    60] loss: 0.280, lr: 0.000100
+[17,    70] loss: 0.210, lr: 0.000100
+[18,    10] loss: 0.221, lr: 0.000100
+[18,    20] loss: 0.270, lr: 0.000100
+[18,    30] loss: 0.264, lr: 0.000100
+[18,    40] loss: 0.256, lr: 0.000100
+[18,    50] loss: 0.248, lr: 0.000100
+[18,    60] loss: 0.281, lr: 0.000100
+[18,    70] loss: 0.272, lr: 0.000100
+[19,    10] loss: 0.242, lr: 0.000100
+[19,    20] loss: 0.223, lr: 0.000100
+[19,    30] loss: 0.276, lr: 0.000100
+[19,    40] loss: 0.198, lr: 0.000100
+[19,    50] loss: 0.205, lr: 0.000100
+[19,    60] loss: 0.223, lr: 0.000100
+[19,    70] loss: 0.260, lr: 0.000100
+[20,    10] loss: 0.259, lr: 0.000100
+[20,    20] loss: 0.234, lr: 0.000100
+[20,    30] loss: 0.253, lr: 0.000100
+[20,    40] loss: 0.210, lr: 0.000100
+[20,    50] loss: 0.234, lr: 0.000100
+[20,    60] loss: 0.198, lr: 0.000100
+[20,    70] loss: 0.253, lr: 0.000100
+[21,    10] loss: 0.198, lr: 0.000001
+[21,    20] loss: 0.232, lr: 0.000001
+[21,    30] loss: 0.268, lr: 0.000001
+[21,    40] loss: 0.292, lr: 0.000001
+[21,    50] loss: 0.234, lr: 0.000001
+[21,    60] loss: 0.221, lr: 0.000001
+[21,    70] loss: 0.242, lr: 0.000001
+[22,    10] loss: 0.217, lr: 0.000010
+[22,    20] loss: 0.285, lr: 0.000010
+[22,    30] loss: 0.262, lr: 0.000010
+[22,    40] loss: 0.178, lr: 0.000010
+[22,    50] loss: 0.227, lr: 0.000010
+[22,    60] loss: 0.279, lr: 0.000010
+[22,    70] loss: 0.241, lr: 0.000010
+[23,    10] loss: 0.227, lr: 0.000010
+[23,    20] loss: 0.234, lr: 0.000010
+[23,    30] loss: 0.203, lr: 0.000010
+[23,    40] loss: 0.252, lr: 0.000010
+[23,    50] loss: 0.253, lr: 0.000010
+[23,    60] loss: 0.220, lr: 0.000010
+[23,    70] loss: 0.158, lr: 0.000010
+[24,    10] loss: 0.249, lr: 0.000010
+[24,    20] loss: 0.300, lr: 0.000010
+[24,    30] loss: 0.230, lr: 0.000010
+[24,    40] loss: 0.211, lr: 0.000010
+[24,    50] loss: 0.211, lr: 0.000010
+[24,    60] loss: 0.271, lr: 0.000010
+[24,    70] loss: 0.261, lr: 0.000010
+[25,    10] loss: 0.242, lr: 0.000010
+[25,    20] loss: 0.202, lr: 0.000010
+[25,    30] loss: 0.228, lr: 0.000010
+[25,    40] loss: 0.207, lr: 0.000010
+[25,    50] loss: 0.234, lr: 0.000010
+[25,    60] loss: 0.231, lr: 0.000010
+[25,    70] loss: 0.200, lr: 0.000010</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:54:01.067857Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:54:01.066959Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:54:01.131214Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:54:01.130181Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:54:01.067818Z&quot;}" data-trusted="true" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model state dict</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>torch.save(model.state_dict(),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">'./cifar10_5percent_scheduler_pretrained_true.pth'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using adam optimiser (an attempt at hyperparameter tuning</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:54:01.135227Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:54:01.134916Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:54:01.304875Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:54:01.303936Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:54:01.135201Z&quot;}" data-trusted="true" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> models.efficientnet_b0(pretrained<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>num_ftrs <span class="op">=</span> model.classifier[<span class="dv">1</span>].in_features</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>model.classifier[<span class="dv">1</span>] <span class="op">=</span> nn.Linear(num_ftrs, <span class="dv">10</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.to(device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:54:01.306471Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:54:01.306159Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:55:23.655643Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:55:23.654723Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:54:01.306444Z&quot;}" data-trusted="true" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss function and optimizer</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)  <span class="co"># Using Adam optimizer</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>num_epochs <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Training loop</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, (inputs, targets) <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader):</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">#         inputs = reassemble_patches(inputs, grid_size=3)</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>        inputs, targets <span class="op">=</span> inputs.to(device), targets.to(device)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(outputs, targets)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Backward and optimize</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">9</span>:  <span class="co"># print every 10 mini-batches</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'[</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%5d</span><span class="st">] loss: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>                  (epoch <span class="op">+</span> <span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>, running_loss <span class="op">/</span> <span class="dv">10</span>))</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>            running_loss <span class="op">=</span> <span class="fl">0.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1,    10] loss: 3.040
+[1,    20] loss: 2.702
+[1,    30] loss: 2.400
+[1,    40] loss: 2.189
+[1,    50] loss: 2.192
+[1,    60] loss: 2.138
+[1,    70] loss: 1.998
+[2,    10] loss: 1.931
+[2,    20] loss: 1.791
+[2,    30] loss: 1.963
+[2,    40] loss: 1.856
+[2,    50] loss: 1.859
+[2,    60] loss: 1.815
+[2,    70] loss: 1.722
+[3,    10] loss: 1.905
+[3,    20] loss: 1.719
+[3,    30] loss: 1.725
+[3,    40] loss: 1.884
+[3,    50] loss: 1.700
+[3,    60] loss: 1.685
+[3,    70] loss: 1.685
+[4,    10] loss: 1.665
+[4,    20] loss: 1.546
+[4,    30] loss: 1.527
+[4,    40] loss: 1.781
+[4,    50] loss: 1.632
+[4,    60] loss: 1.588
+[4,    70] loss: 1.512
+[5,    10] loss: 1.474
+[5,    20] loss: 1.507
+[5,    30] loss: 1.474
+[5,    40] loss: 1.414
+[5,    50] loss: 1.534
+[5,    60] loss: 1.608
+[5,    70] loss: 1.496
+[6,    10] loss: 1.381
+[6,    20] loss: 1.399
+[6,    30] loss: 1.415
+[6,    40] loss: 1.531
+[6,    50] loss: 1.431
+[6,    60] loss: 1.337
+[6,    70] loss: 1.502
+[7,    10] loss: 1.368
+[7,    20] loss: 1.310
+[7,    30] loss: 1.193
+[7,    40] loss: 1.282
+[7,    50] loss: 1.301
+[7,    60] loss: 1.323
+[7,    70] loss: 1.420
+[8,    10] loss: 1.155
+[8,    20] loss: 1.171
+[8,    30] loss: 1.257
+[8,    40] loss: 1.194
+[8,    50] loss: 1.293
+[8,    60] loss: 1.168
+[8,    70] loss: 1.285
+[9,    10] loss: 1.088
+[9,    20] loss: 1.066
+[9,    30] loss: 0.999
+[9,    40] loss: 1.153
+[9,    50] loss: 1.078
+[9,    60] loss: 1.169
+[9,    70] loss: 1.270
+[10,    10] loss: 1.168
+[10,    20] loss: 1.284
+[10,    30] loss: 1.095
+[10,    40] loss: 1.052
+[10,    50] loss: 1.135
+[10,    60] loss: 1.052
+[10,    70] loss: 1.034
+[11,    10] loss: 1.205
+[11,    20] loss: 1.181
+[11,    30] loss: 1.282
+[11,    40] loss: 1.207
+[11,    50] loss: 1.108
+[11,    60] loss: 1.193
+[11,    70] loss: 0.986
+[12,    10] loss: 1.121
+[12,    20] loss: 1.103
+[12,    30] loss: 1.072
+[12,    40] loss: 1.123
+[12,    50] loss: 1.146
+[12,    60] loss: 0.926
+[12,    70] loss: 0.954
+[13,    10] loss: 0.920
+[13,    20] loss: 0.935
+[13,    30] loss: 0.977
+[13,    40] loss: 0.926
+[13,    50] loss: 0.854
+[13,    60] loss: 1.108
+[13,    70] loss: 0.978
+[14,    10] loss: 0.958
+[14,    20] loss: 0.853
+[14,    30] loss: 0.815
+[14,    40] loss: 0.771
+[14,    50] loss: 0.985
+[14,    60] loss: 1.010
+[14,    70] loss: 0.975
+[15,    10] loss: 0.723
+[15,    20] loss: 0.838
+[15,    30] loss: 0.774
+[15,    40] loss: 0.795
+[15,    50] loss: 0.925
+[15,    60] loss: 0.817
+[15,    70] loss: 0.932
+[16,    10] loss: 0.749
+[16,    20] loss: 0.799
+[16,    30] loss: 0.832
+[16,    40] loss: 0.793
+[16,    50] loss: 0.722
+[16,    60] loss: 0.776
+[16,    70] loss: 0.850
+[17,    10] loss: 0.930
+[17,    20] loss: 0.856
+[17,    30] loss: 0.867
+[17,    40] loss: 0.820
+[17,    50] loss: 0.801
+[17,    60] loss: 0.770
+[17,    70] loss: 0.735
+[18,    10] loss: 0.846
+[18,    20] loss: 0.921
+[18,    30] loss: 0.837
+[18,    40] loss: 0.816
+[18,    50] loss: 0.837
+[18,    60] loss: 0.756
+[18,    70] loss: 0.682
+[19,    10] loss: 0.709
+[19,    20] loss: 0.683
+[19,    30] loss: 0.682
+[19,    40] loss: 0.607
+[19,    50] loss: 0.640
+[19,    60] loss: 0.872
+[19,    70] loss: 0.663
+[20,    10] loss: 0.568
+[20,    20] loss: 0.648
+[20,    30] loss: 0.587
+[20,    40] loss: 0.508
+[20,    50] loss: 0.578
+[20,    60] loss: 0.628
+[20,    70] loss: 0.539
+[21,    10] loss: 0.670
+[21,    20] loss: 0.649
+[21,    30] loss: 0.570
+[21,    40] loss: 0.585
+[21,    50] loss: 0.559
+[21,    60] loss: 0.492
+[21,    70] loss: 0.553
+[22,    10] loss: 0.411
+[22,    20] loss: 0.519
+[22,    30] loss: 0.456
+[22,    40] loss: 0.582
+[22,    50] loss: 0.473
+[22,    60] loss: 0.516
+[22,    70] loss: 0.540
+[23,    10] loss: 0.415
+[23,    20] loss: 0.623
+[23,    30] loss: 0.677
+[23,    40] loss: 0.619
+[23,    50] loss: 0.627
+[23,    60] loss: 0.540
+[23,    70] loss: 0.611
+[24,    10] loss: 0.538
+[24,    20] loss: 0.626
+[24,    30] loss: 0.590
+[24,    40] loss: 0.600
+[24,    50] loss: 0.554
+[24,    60] loss: 0.573
+[24,    70] loss: 0.472
+[25,    10] loss: 0.365
+[25,    20] loss: 0.474
+[25,    30] loss: 0.447
+[25,    40] loss: 0.405
+[25,    50] loss: 0.515
+[25,    60] loss: 0.444
+[25,    70] loss: 0.401</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:55:23.657660Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:55:23.657337Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:55:23.721437Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:55:23.720668Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:55:23.657631Z&quot;}" data-trusted="true" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the model state dict</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>torch.save(model.state_dict(), <span class="st">'./cifar10_5percent_adam_pretrained_true.pth'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="image-jigsaw-puzzle-pretraining" class="level2">
+<h2 class="anchored" data-anchor-id="image-jigsaw-puzzle-pretraining">Image Jigsaw Puzzle Pretraining</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:55:23.722849Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:55:23.722549Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:55:24.263793Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:55:24.262853Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:55:23.722823Z&quot;}" data-trusted="true" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> permutations</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.transforms <span class="im">import</span> functional <span class="im">as</span> F</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_patches(image, grid_size<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    patch_size <span class="op">=</span> image.size(<span class="dv">1</span>) <span class="op">//</span> grid_size</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    patches <span class="op">=</span> [F.crop(image, i, j, patch_size, patch_size)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, image.size(<span class="dv">1</span>), patch_size)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, image.size(<span class="dv">2</span>), patch_size)]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> patches</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_permutation(patches, perm):</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [patches[i] <span class="cf">for</span> i <span class="kw">in</span> perm]</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Example permutation generation (100 permutations)</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>num_permutations <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>all_perms <span class="op">=</span> np.array(<span class="bu">list</span>(permutations(<span class="bu">range</span>(<span class="dv">9</span>))))</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>selected_perms <span class="op">=</span> all_perms[np.random.choice(</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">len</span>(all_perms), num_permutations, replace<span class="op">=</span><span class="va">False</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:55:24.265333Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:55:24.265025Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:55:24.272401Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:55:24.271379Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:55:24.265307Z&quot;}" data-trusted="true" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> Dataset</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> JigsawPuzzleDataset(Dataset):</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, dataset, permutations):</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dataset <span class="op">=</span> dataset</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.permutations <span class="op">=</span> permutations</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>):</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.dataset)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__getitem__</span>(<span class="va">self</span>, idx):</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        image, _ <span class="op">=</span> <span class="va">self</span>.dataset[idx]</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>        perm_idx <span class="op">=</span> np.random.choice(<span class="bu">len</span>(<span class="va">self</span>.permutations))</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        perm <span class="op">=</span> <span class="va">self</span>.permutations[perm_idx]</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        shuffled_patches <span class="op">=</span> apply_permutation(extract_patches(image), perm)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Convert list of patches to tensor</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>        shuffled_image <span class="op">=</span> torch.stack(shuffled_patches)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> shuffled_image, perm_idx</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>pretrain_dataset <span class="op">=</span> JigsawPuzzleDataset(pretrain_dataset, selected_perms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:55:24.273955Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:55:24.273643Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:55:24.542458Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:55:24.541530Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:55:24.273931Z&quot;}" data-outputid="d0bb12af-1b56-41d4-a01d-9118b4978b47" data-trusted="true" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_jigsaw(original_image, permuted_patches, grid_size<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Visualize the original and permuted image side by side.</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Args:</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">    original_image (Tensor): The original image tensor.</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">    permuted_patches (Tensor): The permuted patches tensor.</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">    grid_size (int): The size of the grid to divide the image into.</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert tensors to numpy arrays</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    original_image <span class="op">=</span> original_image.permute(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>).numpy()</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reconstruct permuted image from patches</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    patch_size <span class="op">=</span> original_image.shape[<span class="dv">0</span>] <span class="op">//</span> grid_size</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    permuted_image <span class="op">=</span> permuted_patches.view(</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>        grid_size, grid_size, <span class="dv">3</span>, patch_size, patch_size)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    permuted_image <span class="op">=</span> permuted_image.permute(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>).contiguous()</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    permuted_image <span class="op">=</span> permuted_image.view(</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        grid_size <span class="op">*</span> patch_size, grid_size <span class="op">*</span> patch_size, <span class="dv">3</span>)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].imshow(original_image)</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(<span class="st">"Original Image"</span>)</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].imshow(permuted_image)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].set_title(<span class="st">"Permuted Image"</span>)</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'pretrain_jigsaw_dataset' is the JigsawPuzzleDataset instance</span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>original_image, _ <span class="op">=</span> pretrain_dataset.dataset[<span class="dv">0</span>]  <span class="co"># Get an original image</span></span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>permuted_image, _ <span class="op">=</span> pretrain_dataset[<span class="dv">0</span>]         <span class="co"># Get a permuted image</span></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_)</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>visualize_jigsaw(original_image, permuted_image)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>60</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="task_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Using an EfficientNet model pretrained on ImageNet</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:55:24.543976Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:55:24.543600Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:55:24.713145Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:55:24.712189Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:55:24.543951Z&quot;}" data-outputid="29c17508-7dd9-4a13-d107-c599209dbc27" data-trusted="true" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load EfficientNet model</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> models.efficientnet_b0(pretrained<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify the last layer for permutation prediction</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>num_ftrs <span class="op">=</span> model.classifier[<span class="dv">1</span>].in_features</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>num_permutations <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Assuming 100 permutations</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>model.classifier[<span class="dv">1</span>] <span class="op">=</span> nn.Linear(num_ftrs, num_permutations)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>pretrain_loader <span class="op">=</span> DataLoader(pretrain_dataset, batch_size<span class="op">=</span><span class="dv">32</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Move the model to GPU if available</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.to(device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:55:24.714592Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:55:24.714302Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T14:55:24.721318Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T14:55:24.720276Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:55:24.714567Z&quot;}" data-trusted="true" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reassemble_patches(patches, grid_size<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Reassemble the shuffled patches into a single image tensor.</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Converts 5d to 4d vector</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    batch_size, num_patches, channels, patch_height, patch_width <span class="op">=</span> patches.shape</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    patches <span class="op">=</span> patches.view(batch_size, grid_size, grid_size,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                           channels, patch_height, patch_width)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    patches <span class="op">=</span> patches.permute(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>).contiguous()</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    patches <span class="op">=</span> patches.view(batch_size, grid_size <span class="op">*</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                           patch_height, grid_size <span class="op">*</span> patch_width, channels)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rearrange axes to [batch_size, channels, height, width]</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    patches <span class="op">=</span> patches.permute(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> patches</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T14:55:24.722658Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T14:55:24.722397Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T15:21:42.284028Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T15:21:42.283142Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T14:55:24.722635Z&quot;}" data-outputid="e4135cf7-e3fb-4e9c-9bf2-0b2183992b90" data-trusted="true" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss function and optimizer</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)  <span class="co"># Using Adam optimizer</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>num_epochs <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Training loop</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, (inputs, targets) <span class="kw">in</span> <span class="bu">enumerate</span>(pretrain_loader):</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>        inputs <span class="op">=</span> reassemble_patches(inputs, grid_size<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        inputs, targets <span class="op">=</span> inputs.to(device), targets.to(device)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(outputs, targets)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Backward and optimize</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">9</span>:  <span class="co"># print every 10 mini-batches</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'[</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%5d</span><span class="st">] loss: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>                  (epoch <span class="op">+</span> <span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>, running_loss <span class="op">/</span> <span class="dv">10</span>))</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>            running_loss <span class="op">=</span> <span class="fl">0.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1,    10] loss: 5.256
+[1,    20] loss: 5.204
+[1,    30] loss: 5.073
+[1,    40] loss: 4.943
+[1,    50] loss: 4.830
+[1,    60] loss: 4.867
+[1,    70] loss: 4.777
+[1,    80] loss: 4.657
+[1,    90] loss: 4.740
+[1,   100] loss: 4.735
+[1,   110] loss: 4.668
+[1,   120] loss: 4.724
+[1,   130] loss: 4.696
+[1,   140] loss: 4.600
+[1,   150] loss: 4.701
+[1,   160] loss: 4.708
+[1,   170] loss: 4.664
+[1,   180] loss: 4.662
+[1,   190] loss: 4.683
+[1,   200] loss: 4.668
+[1,   210] loss: 4.703
+[1,   220] loss: 4.715
+[1,   230] loss: 4.646
+[1,   240] loss: 4.648
+[1,   250] loss: 4.670
+[1,   260] loss: 4.635
+[1,   270] loss: 4.683
+[1,   280] loss: 4.650
+[1,   290] loss: 4.659
+[1,   300] loss: 4.670
+[1,   310] loss: 4.702
+[1,   320] loss: 4.671
+[1,   330] loss: 4.670
+[1,   340] loss: 4.645
+[1,   350] loss: 4.688
+[1,   360] loss: 4.650
+[1,   370] loss: 4.645
+[1,   380] loss: 4.673
+[1,   390] loss: 4.629
+[1,   400] loss: 4.657
+[1,   410] loss: 4.652
+[1,   420] loss: 4.635
+[1,   430] loss: 4.639
+[1,   440] loss: 4.628
+[1,   450] loss: 4.613
+[1,   460] loss: 4.644
+[1,   470] loss: 4.648
+[1,   480] loss: 4.596
+[1,   490] loss: 4.586
+[1,   500] loss: 4.588
+[1,   510] loss: 4.575
+[1,   520] loss: 4.625
+[1,   530] loss: 4.590
+[1,   540] loss: 4.606
+[1,   550] loss: 4.523
+[1,   560] loss: 4.599
+[1,   570] loss: 4.536
+[1,   580] loss: 4.558
+[1,   590] loss: 4.507
+[1,   600] loss: 4.473
+[1,   610] loss: 4.537
+[1,   620] loss: 4.546
+[1,   630] loss: 4.546
+[1,   640] loss: 4.465
+[1,   650] loss: 4.446
+[1,   660] loss: 4.378
+[1,   670] loss: 4.379
+[1,   680] loss: 4.436
+[1,   690] loss: 4.371
+[1,   700] loss: 4.397
+[2,    10] loss: 4.511
+[2,    20] loss: 4.493
+[2,    30] loss: 4.337
+[2,    40] loss: 4.363
+[2,    50] loss: 4.292
+[2,    60] loss: 4.324
+[2,    70] loss: 4.262
+[2,    80] loss: 4.226
+[2,    90] loss: 4.240
+[2,   100] loss: 4.248
+[2,   110] loss: 4.180
+[2,   120] loss: 4.288
+[2,   130] loss: 4.202
+[2,   140] loss: 4.158
+[2,   150] loss: 4.184
+[2,   160] loss: 4.206
+[2,   170] loss: 4.092
+[2,   180] loss: 4.104
+[2,   190] loss: 4.153
+[2,   200] loss: 4.015
+[2,   210] loss: 4.095
+[2,   220] loss: 4.030
+[2,   230] loss: 4.004
+[2,   240] loss: 3.899
+[2,   250] loss: 4.070
+[2,   260] loss: 4.001
+[2,   270] loss: 3.949
+[2,   280] loss: 3.923
+[2,   290] loss: 3.886
+[2,   300] loss: 3.991
+[2,   310] loss: 4.028
+[2,   320] loss: 3.803
+[2,   330] loss: 3.873
+[2,   340] loss: 3.980
+[2,   350] loss: 3.876
+[2,   360] loss: 3.564
+[2,   370] loss: 3.643
+[2,   380] loss: 3.794
+[2,   390] loss: 3.678
+[2,   400] loss: 3.603
+[2,   410] loss: 3.635
+[2,   420] loss: 3.671
+[2,   430] loss: 3.499
+[2,   440] loss: 3.503
+[2,   450] loss: 3.666
+[2,   460] loss: 3.428
+[2,   470] loss: 3.477
+[2,   480] loss: 3.426
+[2,   490] loss: 3.333
+[2,   500] loss: 3.546
+[2,   510] loss: 3.510
+[2,   520] loss: 3.411
+[2,   530] loss: 3.250
+[2,   540] loss: 3.274
+[2,   550] loss: 3.153
+[2,   560] loss: 3.558
+[2,   570] loss: 3.247
+[2,   580] loss: 3.287
+[2,   590] loss: 3.226
+[2,   600] loss: 3.493
+[2,   610] loss: 3.121
+[2,   620] loss: 3.088
+[2,   630] loss: 3.183
+[2,   640] loss: 3.061
+[2,   650] loss: 3.182
+[2,   660] loss: 3.192
+[2,   670] loss: 3.014
+[2,   680] loss: 3.261
+[2,   690] loss: 2.935
+[2,   700] loss: 3.039
+[3,    10] loss: 3.359
+[3,    20] loss: 3.196
+[3,    30] loss: 3.140
+[3,    40] loss: 3.000
+[3,    50] loss: 2.875
+[3,    60] loss: 2.909
+[3,    70] loss: 2.856
+[3,    80] loss: 3.052
+[3,    90] loss: 3.082
+[3,   100] loss: 3.158
+[3,   110] loss: 3.116
+[3,   120] loss: 2.785
+[3,   130] loss: 2.816
+[3,   140] loss: 2.841
+[3,   150] loss: 3.037
+[3,   160] loss: 2.805
+[3,   170] loss: 2.647
+[3,   180] loss: 2.758
+[3,   190] loss: 2.854
+[3,   200] loss: 2.939
+[3,   210] loss: 2.630
+[3,   220] loss: 2.957
+[3,   230] loss: 3.019
+[3,   240] loss: 2.763
+[3,   250] loss: 2.721
+[3,   260] loss: 2.724
+[3,   270] loss: 2.699
+[3,   280] loss: 2.431
+[3,   290] loss: 2.702
+[3,   300] loss: 2.563
+[3,   310] loss: 2.699
+[3,   320] loss: 2.468
+[3,   330] loss: 2.479
+[3,   340] loss: 2.364
+[3,   350] loss: 2.491
+[3,   360] loss: 2.331
+[3,   370] loss: 2.457
+[3,   380] loss: 2.207
+[3,   390] loss: 2.208
+[3,   400] loss: 2.452
+[3,   410] loss: 2.526
+[3,   420] loss: 2.398
+[3,   430] loss: 2.228
+[3,   440] loss: 2.112
+[3,   450] loss: 2.437
+[3,   460] loss: 2.375
+[3,   470] loss: 2.104
+[3,   480] loss: 2.238
+[3,   490] loss: 2.473
+[3,   500] loss: 2.093
+[3,   510] loss: 2.090
+[3,   520] loss: 2.107
+[3,   530] loss: 2.013
+[3,   540] loss: 2.153
+[3,   550] loss: 2.072
+[3,   560] loss: 2.007
+[3,   570] loss: 1.953
+[3,   580] loss: 2.011
+[3,   590] loss: 1.836
+[3,   600] loss: 1.930
+[3,   610] loss: 1.715
+[3,   620] loss: 2.008
+[3,   630] loss: 1.813
+[3,   640] loss: 1.759
+[3,   650] loss: 1.934
+[3,   660] loss: 1.848
+[3,   670] loss: 1.621
+[3,   680] loss: 1.716
+[3,   690] loss: 1.689
+[3,   700] loss: 1.730
+[4,    10] loss: 1.731
+[4,    20] loss: 1.807
+[4,    30] loss: 1.648
+[4,    40] loss: 1.476
+[4,    50] loss: 1.415
+[4,    60] loss: 1.599
+[4,    70] loss: 1.633
+[4,    80] loss: 1.675
+[4,    90] loss: 1.676
+[4,   100] loss: 1.259
+[4,   110] loss: 1.508
+[4,   120] loss: 1.487
+[4,   130] loss: 1.652
+[4,   140] loss: 1.260
+[4,   150] loss: 1.652
+[4,   160] loss: 1.708
+[4,   170] loss: 1.624
+[4,   180] loss: 1.449
+[4,   190] loss: 1.151
+[4,   200] loss: 1.262
+[4,   210] loss: 1.323
+[4,   220] loss: 1.240
+[4,   230] loss: 1.384
+[4,   240] loss: 1.518
+[4,   250] loss: 1.356
+[4,   260] loss: 1.262
+[4,   270] loss: 1.402
+[4,   280] loss: 1.472
+[4,   290] loss: 1.334
+[4,   300] loss: 1.500
+[4,   310] loss: 1.351
+[4,   320] loss: 1.159
+[4,   330] loss: 1.190
+[4,   340] loss: 1.340
+[4,   350] loss: 1.748
+[4,   360] loss: 1.336
+[4,   370] loss: 1.406
+[4,   380] loss: 1.384
+[4,   390] loss: 1.247
+[4,   400] loss: 1.170
+[4,   410] loss: 1.235
+[4,   420] loss: 1.141
+[4,   430] loss: 1.194
+[4,   440] loss: 1.328
+[4,   450] loss: 1.290
+[4,   460] loss: 1.216
+[4,   470] loss: 1.422
+[4,   480] loss: 1.102
+[4,   490] loss: 1.288
+[4,   500] loss: 1.222
+[4,   510] loss: 1.196
+[4,   520] loss: 1.270
+[4,   530] loss: 1.135
+[4,   540] loss: 1.080
+[4,   550] loss: 1.441
+[4,   560] loss: 1.276
+[4,   570] loss: 1.210
+[4,   580] loss: 1.013
+[4,   590] loss: 1.095
+[4,   600] loss: 1.313
+[4,   610] loss: 1.161
+[4,   620] loss: 1.179
+[4,   630] loss: 1.172
+[4,   640] loss: 1.172
+[4,   650] loss: 1.084
+[4,   660] loss: 1.086
+[4,   670] loss: 1.034
+[4,   680] loss: 1.260
+[4,   690] loss: 1.023
+[4,   700] loss: 1.204
+[5,    10] loss: 1.235
+[5,    20] loss: 1.597
+[5,    30] loss: 1.475
+[5,    40] loss: 1.442
+[5,    50] loss: 1.019
+[5,    60] loss: 1.127
+[5,    70] loss: 1.325
+[5,    80] loss: 1.132
+[5,    90] loss: 1.070
+[5,   100] loss: 1.126
+[5,   110] loss: 1.152
+[5,   120] loss: 1.230
+[5,   130] loss: 1.045
+[5,   140] loss: 1.151
+[5,   150] loss: 1.062
+[5,   160] loss: 1.031
+[5,   170] loss: 1.022
+[5,   180] loss: 1.087
+[5,   190] loss: 0.961
+[5,   200] loss: 1.212
+[5,   210] loss: 1.150
+[5,   220] loss: 1.085
+[5,   230] loss: 1.076
+[5,   240] loss: 1.157
+[5,   250] loss: 1.062
+[5,   260] loss: 0.962
+[5,   270] loss: 0.956
+[5,   280] loss: 1.079
+[5,   290] loss: 1.111
+[5,   300] loss: 1.229
+[5,   310] loss: 1.241
+[5,   320] loss: 0.978
+[5,   330] loss: 0.939
+[5,   340] loss: 1.032
+[5,   350] loss: 1.127
+[5,   360] loss: 1.128
+[5,   370] loss: 1.129
+[5,   380] loss: 1.102
+[5,   390] loss: 0.966
+[5,   400] loss: 1.115
+[5,   410] loss: 1.063
+[5,   420] loss: 0.945
+[5,   430] loss: 1.089
+[5,   440] loss: 0.970
+[5,   450] loss: 0.937
+[5,   460] loss: 0.945
+[5,   470] loss: 0.935
+[5,   480] loss: 0.919
+[5,   490] loss: 0.925
+[5,   500] loss: 1.002
+[5,   510] loss: 0.950
+[5,   520] loss: 1.011
+[5,   530] loss: 0.896
+[5,   540] loss: 0.892
+[5,   550] loss: 0.924
+[5,   560] loss: 0.930
+[5,   570] loss: 0.868
+[5,   580] loss: 1.018
+[5,   590] loss: 1.182
+[5,   600] loss: 0.827
+[5,   610] loss: 0.915
+[5,   620] loss: 0.970
+[5,   630] loss: 0.816
+[5,   640] loss: 0.834
+[5,   650] loss: 0.821
+[5,   660] loss: 0.887
+[5,   670] loss: 1.008
+[5,   680] loss: 0.971
+[5,   690] loss: 0.919
+[5,   700] loss: 0.855
+[6,    10] loss: 0.974
+[6,    20] loss: 1.093
+[6,    30] loss: 0.870
+[6,    40] loss: 0.998
+[6,    50] loss: 1.035
+[6,    60] loss: 0.920
+[6,    70] loss: 0.856
+[6,    80] loss: 0.810
+[6,    90] loss: 0.926
+[6,   100] loss: 0.988
+[6,   110] loss: 1.115
+[6,   120] loss: 1.020
+[6,   130] loss: 0.993
+[6,   140] loss: 0.815
+[6,   150] loss: 0.888
+[6,   160] loss: 0.931
+[6,   170] loss: 0.879
+[6,   180] loss: 0.902
+[6,   190] loss: 0.877
+[6,   200] loss: 0.799
+[6,   210] loss: 0.970
+[6,   220] loss: 1.039
+[6,   230] loss: 0.783
+[6,   240] loss: 0.809
+[6,   250] loss: 0.796
+[6,   260] loss: 0.757
+[6,   270] loss: 0.917
+[6,   280] loss: 0.896
+[6,   290] loss: 0.944
+[6,   300] loss: 0.810
+[6,   310] loss: 0.897
+[6,   320] loss: 0.861
+[6,   330] loss: 0.927
+[6,   340] loss: 0.770
+[6,   350] loss: 0.844
+[6,   360] loss: 0.820
+[6,   370] loss: 0.799
+[6,   380] loss: 0.907
+[6,   390] loss: 0.813
+[6,   400] loss: 0.859
+[6,   410] loss: 0.947
+[6,   420] loss: 0.906
+[6,   430] loss: 0.901
+[6,   440] loss: 0.861
+[6,   450] loss: 0.854
+[6,   460] loss: 0.976
+[6,   470] loss: 0.853
+[6,   480] loss: 1.180
+[6,   490] loss: 1.173
+[6,   500] loss: 0.831
+[6,   510] loss: 0.807
+[6,   520] loss: 0.855
+[6,   530] loss: 0.984
+[6,   540] loss: 0.987
+[6,   550] loss: 0.748
+[6,   560] loss: 0.951
+[6,   570] loss: 0.819
+[6,   580] loss: 0.723
+[6,   590] loss: 0.798
+[6,   600] loss: 0.744
+[6,   610] loss: 0.927
+[6,   620] loss: 0.822
+[6,   630] loss: 0.778
+[6,   640] loss: 0.805
+[6,   650] loss: 0.790
+[6,   660] loss: 0.697
+[6,   670] loss: 0.823
+[6,   680] loss: 0.822
+[6,   690] loss: 0.921
+[6,   700] loss: 0.776
+[7,    10] loss: 1.275
+[7,    20] loss: 1.230
+[7,    30] loss: 0.777
+[7,    40] loss: 0.818
+[7,    50] loss: 1.142
+[7,    60] loss: 0.961
+[7,    70] loss: 0.972
+[7,    80] loss: 0.810
+[7,    90] loss: 0.778
+[7,   100] loss: 0.816
+[7,   110] loss: 0.932
+[7,   120] loss: 0.734
+[7,   130] loss: 0.791
+[7,   140] loss: 0.787
+[7,   150] loss: 0.695
+[7,   160] loss: 0.756
+[7,   170] loss: 0.748
+[7,   180] loss: 0.756
+[7,   190] loss: 0.902
+[7,   200] loss: 0.954
+[7,   210] loss: 0.796
+[7,   220] loss: 0.647
+[7,   230] loss: 0.858
+[7,   240] loss: 0.970
+[7,   250] loss: 0.859
+[7,   260] loss: 0.721
+[7,   270] loss: 0.829
+[7,   280] loss: 0.707
+[7,   290] loss: 0.790
+[7,   300] loss: 0.787
+[7,   310] loss: 0.836
+[7,   320] loss: 0.754
+[7,   330] loss: 0.868
+[7,   340] loss: 0.878
+[7,   350] loss: 0.764
+[7,   360] loss: 0.818
+[7,   370] loss: 0.679
+[7,   380] loss: 0.697
+[7,   390] loss: 0.765
+[7,   400] loss: 0.646
+[7,   410] loss: 0.683
+[7,   420] loss: 0.831
+[7,   430] loss: 0.750
+[7,   440] loss: 0.651
+[7,   450] loss: 0.741
+[7,   460] loss: 0.822
+[7,   470] loss: 0.796
+[7,   480] loss: 0.735
+[7,   490] loss: 0.648
+[7,   500] loss: 0.900
+[7,   510] loss: 1.108
+[7,   520] loss: 0.769
+[7,   530] loss: 0.845
+[7,   540] loss: 0.692
+[7,   550] loss: 0.801
+[7,   560] loss: 0.828
+[7,   570] loss: 0.647
+[7,   580] loss: 0.686
+[7,   590] loss: 0.801
+[7,   600] loss: 0.794
+[7,   610] loss: 0.730
+[7,   620] loss: 0.755
+[7,   630] loss: 0.767
+[7,   640] loss: 0.971
+[7,   650] loss: 0.707
+[7,   660] loss: 0.772
+[7,   670] loss: 0.851
+[7,   680] loss: 0.813
+[7,   690] loss: 0.787
+[7,   700] loss: 0.761
+[8,    10] loss: 1.019
+[8,    20] loss: 0.859
+[8,    30] loss: 1.020
+[8,    40] loss: 0.750
+[8,    50] loss: 0.793
+[8,    60] loss: 0.613
+[8,    70] loss: 0.754
+[8,    80] loss: 0.637
+[8,    90] loss: 0.615
+[8,   100] loss: 0.928
+[8,   110] loss: 0.691
+[8,   120] loss: 0.647
+[8,   130] loss: 0.711
+[8,   140] loss: 0.682
+[8,   150] loss: 0.583
+[8,   160] loss: 0.672
+[8,   170] loss: 0.750
+[8,   180] loss: 0.653
+[8,   190] loss: 0.754
+[8,   200] loss: 0.846
+[8,   210] loss: 0.655
+[8,   220] loss: 0.710
+[8,   230] loss: 0.704
+[8,   240] loss: 0.713
+[8,   250] loss: 0.839
+[8,   260] loss: 0.738
+[8,   270] loss: 0.709
+[8,   280] loss: 0.707
+[8,   290] loss: 0.549
+[8,   300] loss: 0.712
+[8,   310] loss: 0.704
+[8,   320] loss: 0.840
+[8,   330] loss: 0.650
+[8,   340] loss: 0.785
+[8,   350] loss: 0.863
+[8,   360] loss: 0.610
+[8,   370] loss: 0.598
+[8,   380] loss: 0.769
+[8,   390] loss: 0.955
+[8,   400] loss: 0.702
+[8,   410] loss: 0.724
+[8,   420] loss: 0.779
+[8,   430] loss: 0.721
+[8,   440] loss: 0.636
+[8,   450] loss: 0.698
+[8,   460] loss: 0.642
+[8,   470] loss: 0.725
+[8,   480] loss: 0.713
+[8,   490] loss: 0.656
+[8,   500] loss: 0.673
+[8,   510] loss: 0.694
+[8,   520] loss: 0.745
+[8,   530] loss: 0.765
+[8,   540] loss: 0.567
+[8,   550] loss: 0.780
+[8,   560] loss: 0.730
+[8,   570] loss: 0.770
+[8,   580] loss: 0.736
+[8,   590] loss: 0.668
+[8,   600] loss: 0.785
+[8,   610] loss: 0.760
+[8,   620] loss: 0.559
+[8,   630] loss: 0.673
+[8,   640] loss: 0.618
+[8,   650] loss: 0.668
+[8,   660] loss: 0.792
+[8,   670] loss: 0.586
+[8,   680] loss: 0.674
+[8,   690] loss: 0.649
+[8,   700] loss: 0.657
+[9,    10] loss: 0.923
+[9,    20] loss: 0.813
+[9,    30] loss: 0.771
+[9,    40] loss: 0.911
+[9,    50] loss: 0.812
+[9,    60] loss: 0.807
+[9,    70] loss: 0.670
+[9,    80] loss: 0.725
+[9,    90] loss: 0.744
+[9,   100] loss: 0.680
+[9,   110] loss: 0.645
+[9,   120] loss: 0.668
+[9,   130] loss: 0.831
+[9,   140] loss: 0.644
+[9,   150] loss: 0.747
+[9,   160] loss: 0.747
+[9,   170] loss: 0.676
+[9,   180] loss: 0.773
+[9,   190] loss: 0.730
+[9,   200] loss: 0.699
+[9,   210] loss: 0.816
+[9,   220] loss: 0.667
+[9,   230] loss: 0.624
+[9,   240] loss: 0.481
+[9,   250] loss: 0.630
+[9,   260] loss: 0.677
+[9,   270] loss: 0.744
+[9,   280] loss: 0.878
+[9,   290] loss: 0.698
+[9,   300] loss: 0.653
+[9,   310] loss: 0.619
+[9,   320] loss: 0.707
+[9,   330] loss: 0.563
+[9,   340] loss: 0.522
+[9,   350] loss: 0.696
+[9,   360] loss: 0.721
+[9,   370] loss: 0.871
+[9,   380] loss: 0.701
+[9,   390] loss: 0.952
+[9,   400] loss: 0.778
+[9,   410] loss: 0.669
+[9,   420] loss: 0.572
+[9,   430] loss: 0.793
+[9,   440] loss: 0.712
+[9,   450] loss: 0.537
+[9,   460] loss: 0.661
+[9,   470] loss: 0.580
+[9,   480] loss: 0.664
+[9,   490] loss: 0.545
+[9,   500] loss: 0.722
+[9,   510] loss: 0.724
+[9,   520] loss: 0.719
+[9,   530] loss: 0.712
+[9,   540] loss: 0.732
+[9,   550] loss: 0.695
+[9,   560] loss: 0.524
+[9,   570] loss: 0.683
+[9,   580] loss: 0.628
+[9,   590] loss: 0.702
+[9,   600] loss: 0.930
+[9,   610] loss: 0.651
+[9,   620] loss: 0.633
+[9,   630] loss: 0.739
+[9,   640] loss: 0.704
+[9,   650] loss: 0.668
+[9,   660] loss: 0.649
+[9,   670] loss: 0.531
+[9,   680] loss: 0.463
+[9,   690] loss: 0.731
+[9,   700] loss: 0.701
+[10,    10] loss: 1.087
+[10,    20] loss: 0.661
+[10,    30] loss: 0.681
+[10,    40] loss: 0.834
+[10,    50] loss: 0.604
+[10,    60] loss: 0.637
+[10,    70] loss: 0.535
+[10,    80] loss: 0.822
+[10,    90] loss: 0.736
+[10,   100] loss: 0.513
+[10,   110] loss: 0.766
+[10,   120] loss: 0.720
+[10,   130] loss: 0.621
+[10,   140] loss: 0.526
+[10,   150] loss: 0.615
+[10,   160] loss: 0.644
+[10,   170] loss: 0.616
+[10,   180] loss: 0.624
+[10,   190] loss: 0.674
+[10,   200] loss: 0.535
+[10,   210] loss: 0.610
+[10,   220] loss: 0.664
+[10,   230] loss: 0.584
+[10,   240] loss: 0.657
+[10,   250] loss: 0.763
+[10,   260] loss: 0.531
+[10,   270] loss: 0.542
+[10,   280] loss: 0.779
+[10,   290] loss: 0.762
+[10,   300] loss: 0.776
+[10,   310] loss: 0.660
+[10,   320] loss: 0.608
+[10,   330] loss: 0.795
+[10,   340] loss: 0.523
+[10,   350] loss: 0.682
+[10,   360] loss: 0.543
+[10,   370] loss: 0.666
+[10,   380] loss: 0.630
+[10,   390] loss: 0.536
+[10,   400] loss: 0.644
+[10,   410] loss: 0.604
+[10,   420] loss: 0.692
+[10,   430] loss: 0.614
+[10,   440] loss: 0.706
+[10,   450] loss: 0.695
+[10,   460] loss: 0.551
+[10,   470] loss: 0.623
+[10,   480] loss: 0.654
+[10,   490] loss: 0.619
+[10,   500] loss: 0.918
+[10,   510] loss: 0.799
+[10,   520] loss: 0.817
+[10,   530] loss: 0.585
+[10,   540] loss: 0.591
+[10,   550] loss: 0.557
+[10,   560] loss: 0.576
+[10,   570] loss: 0.615
+[10,   580] loss: 0.665
+[10,   590] loss: 0.532
+[10,   600] loss: 0.568
+[10,   610] loss: 0.592
+[10,   620] loss: 0.623
+[10,   630] loss: 0.623
+[10,   640] loss: 0.597
+[10,   650] loss: 0.726
+[10,   660] loss: 0.489
+[10,   670] loss: 0.561
+[10,   680] loss: 0.543
+[10,   690] loss: 0.458
+[10,   700] loss: 0.544</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T15:21:42.285819Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T15:21:42.285403Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T15:28:45.467359Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T15:28:45.466534Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T15:21:42.285774Z&quot;}" data-trusted="true" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming the model is already defined and loaded as EfficientNet</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If not, you can load it as follows:</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># model = models.efficientnet_b0(pretrained=False)</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># And then load your trained weights if necessary</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the number of input features to the last layer</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>num_ftrs <span class="op">=</span> model.classifier[<span class="dv">1</span>].in_features</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset the last layer for CIFAR-10 classification (10 classes)</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>model.classifier[<span class="dv">1</span>] <span class="op">=</span> nn.Linear(num_ftrs, <span class="dv">10</span>)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Move the model to GPU if available</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.to(device)</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss function and optimizer for fine-tuning</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Using Adam optimizer, LR can be adjusted as needed</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of epochs for fine-tuning</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>num_fine_tune_epochs <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Fine-tuning training loop</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(num_fine_tune_epochs):</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, data <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader, <span class="dv">0</span>):</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the inputs and labels</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>        inputs, labels <span class="op">=</span> data</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>        inputs, labels <span class="op">=</span> inputs.to(device), labels.to(device)</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Zero the parameter gradients</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass</span></span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(outputs, labels)</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Backward and optimize</span></span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Print statistics</span></span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">9</span>:  <span class="co"># print every 10 mini-batches</span></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'[</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%5d</span><span class="st">] loss: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>                  (epoch <span class="op">+</span> <span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>, running_loss <span class="op">/</span> <span class="dv">10</span>))</span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>            running_loss <span class="op">=</span> <span class="fl">0.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1,    10] loss: 2.293
+[1,    20] loss: 2.169
+[1,    30] loss: 2.059
+[1,    40] loss: 1.867
+[1,    50] loss: 1.851
+[1,    60] loss: 1.950
+[1,    70] loss: 1.914
+[2,    10] loss: 1.801
+[2,    20] loss: 1.748
+[2,    30] loss: 1.620
+[2,    40] loss: 1.664
+[2,    50] loss: 1.650
+[2,    60] loss: 1.740
+[2,    70] loss: 1.670
+[3,    10] loss: 1.519
+[3,    20] loss: 1.647
+[3,    30] loss: 1.502
+[3,    40] loss: 1.421
+[3,    50] loss: 1.441
+[3,    60] loss: 1.544
+[3,    70] loss: 1.484
+[4,    10] loss: 1.467
+[4,    20] loss: 1.409
+[4,    30] loss: 1.465
+[4,    40] loss: 1.384
+[4,    50] loss: 1.338
+[4,    60] loss: 1.269
+[4,    70] loss: 1.388
+[5,    10] loss: 1.341
+[5,    20] loss: 1.223
+[5,    30] loss: 1.343
+[5,    40] loss: 1.247
+[5,    50] loss: 1.171
+[5,    60] loss: 1.269
+[5,    70] loss: 1.194
+[6,    10] loss: 1.282
+[6,    20] loss: 1.093
+[6,    30] loss: 1.081
+[6,    40] loss: 1.192
+[6,    50] loss: 1.069
+[6,    60] loss: 1.275
+[6,    70] loss: 1.249
+[7,    10] loss: 1.132
+[7,    20] loss: 1.172
+[7,    30] loss: 1.113
+[7,    40] loss: 1.120
+[7,    50] loss: 0.988
+[7,    60] loss: 1.072
+[7,    70] loss: 1.111
+[8,    10] loss: 1.087
+[8,    20] loss: 1.076
+[8,    30] loss: 0.870
+[8,    40] loss: 0.903
+[8,    50] loss: 1.006
+[8,    60] loss: 1.020
+[8,    70] loss: 0.900
+[9,    10] loss: 0.872
+[9,    20] loss: 0.755
+[9,    30] loss: 0.855
+[9,    40] loss: 0.842
+[9,    50] loss: 1.105
+[9,    60] loss: 0.954
+[9,    70] loss: 0.895
+[10,    10] loss: 0.729
+[10,    20] loss: 0.715
+[10,    30] loss: 0.787
+[10,    40] loss: 0.717
+[10,    50] loss: 0.810
+[10,    60] loss: 0.864
+[10,    70] loss: 0.740
+[11,    10] loss: 0.827
+[11,    20] loss: 0.976
+[11,    30] loss: 0.902
+[11,    40] loss: 0.751
+[11,    50] loss: 0.811
+[11,    60] loss: 0.765
+[11,    70] loss: 0.784
+[12,    10] loss: 0.702
+[12,    20] loss: 0.781
+[12,    30] loss: 0.651
+[12,    40] loss: 0.700
+[12,    50] loss: 0.659
+[12,    60] loss: 0.702
+[12,    70] loss: 0.668
+[13,    10] loss: 0.626
+[13,    20] loss: 0.515
+[13,    30] loss: 0.524
+[13,    40] loss: 0.588
+[13,    50] loss: 0.786
+[13,    60] loss: 0.789
+[13,    70] loss: 0.785
+[14,    10] loss: 0.620
+[14,    20] loss: 0.724
+[14,    30] loss: 0.667
+[14,    40] loss: 0.529
+[14,    50] loss: 0.499
+[14,    60] loss: 0.568
+[14,    70] loss: 0.721
+[15,    10] loss: 0.491
+[15,    20] loss: 0.543
+[15,    30] loss: 0.652
+[15,    40] loss: 0.523
+[15,    50] loss: 0.499
+[15,    60] loss: 0.553
+[15,    70] loss: 0.554
+[16,    10] loss: 0.406
+[16,    20] loss: 0.386
+[16,    30] loss: 0.443
+[16,    40] loss: 0.354
+[16,    50] loss: 0.475
+[16,    60] loss: 0.485
+[16,    70] loss: 0.474
+[17,    10] loss: 0.389
+[17,    20] loss: 0.497
+[17,    30] loss: 0.436
+[17,    40] loss: 0.428
+[17,    50] loss: 0.424
+[17,    60] loss: 0.442
+[17,    70] loss: 0.426
+[18,    10] loss: 0.535
+[18,    20] loss: 0.589
+[18,    30] loss: 0.491
+[18,    40] loss: 0.436
+[18,    50] loss: 0.404
+[18,    60] loss: 0.416
+[18,    70] loss: 0.483
+[19,    10] loss: 0.240
+[19,    20] loss: 0.278
+[19,    30] loss: 0.341
+[19,    40] loss: 0.357
+[19,    50] loss: 0.421
+[19,    60] loss: 0.409
+[19,    70] loss: 0.303
+[20,    10] loss: 0.330
+[20,    20] loss: 0.263
+[20,    30] loss: 0.256
+[20,    40] loss: 0.248
+[20,    50] loss: 0.298
+[20,    60] loss: 0.456
+[20,    70] loss: 0.405
+[21,    10] loss: 0.367
+[21,    20] loss: 0.427
+[21,    30] loss: 0.501
+[21,    40] loss: 0.395
+[21,    50] loss: 0.326
+[21,    60] loss: 0.309
+[21,    70] loss: 0.373
+[22,    10] loss: 0.321
+[22,    20] loss: 0.301
+[22,    30] loss: 0.287
+[22,    40] loss: 0.309
+[22,    50] loss: 0.299
+[22,    60] loss: 0.368
+[22,    70] loss: 0.447
+[23,    10] loss: 0.366
+[23,    20] loss: 0.422
+[23,    30] loss: 0.259
+[23,    40] loss: 0.261
+[23,    50] loss: 0.315
+[23,    60] loss: 0.330
+[23,    70] loss: 0.306
+[24,    10] loss: 0.397
+[24,    20] loss: 0.421
+[24,    30] loss: 0.280
+[24,    40] loss: 0.328
+[24,    50] loss: 0.253
+[24,    60] loss: 0.265
+[24,    70] loss: 0.288
+[25,    10] loss: 0.339
+[25,    20] loss: 0.515
+[25,    30] loss: 0.469
+[25,    40] loss: 0.331
+[25,    50] loss: 0.343
+[25,    60] loss: 0.278
+[25,    70] loss: 0.244</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T15:28:45.469212Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T15:28:45.468819Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T15:28:45.534755Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T15:28:45.533922Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T15:28:45.469177Z&quot;}" data-trusted="true" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>torch.save(model.state_dict(), <span class="st">'./pretrained.pth'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using an EfficientNet model without pretraining on imagenet</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T15:28:45.536527Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T15:28:45.536146Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T15:28:45.660725Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T15:28:45.659694Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T15:28:45.536491Z&quot;}" data-trusted="true" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load EfficientNet model</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> models.efficientnet_b0(pretrained<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify the last layer for permutation prediction</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>num_ftrs <span class="op">=</span> model.classifier[<span class="dv">1</span>].in_features</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>num_permutations <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Assuming 100 permutations</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>model.classifier[<span class="dv">1</span>] <span class="op">=</span> nn.Linear(num_ftrs, num_permutations)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>pretrain_loader <span class="op">=</span> DataLoader(pretrain_dataset, batch_size<span class="op">=</span><span class="dv">32</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Move the model to GPU if available</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.to(device)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T15:28:45.662604Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T15:28:45.662299Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T15:55:03.589940Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T15:55:03.589081Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T15:28:45.662578Z&quot;}" data-trusted="true" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss function and optimizer</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)  <span class="co"># Using Adam optimizer</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>num_epochs <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Training loop</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(num_epochs):</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, (inputs, targets) <span class="kw">in</span> <span class="bu">enumerate</span>(pretrain_loader):</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>        inputs <span class="op">=</span> reassemble_patches(inputs, grid_size<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>        inputs, targets <span class="op">=</span> inputs.to(device), targets.to(device)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(outputs, targets)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Backward and optimize</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">9</span>:  <span class="co"># print every 10 mini-batches</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'[</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%5d</span><span class="st">] loss: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>                  (epoch <span class="op">+</span> <span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>, running_loss <span class="op">/</span> <span class="dv">10</span>))</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>            running_loss <span class="op">=</span> <span class="fl">0.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1,    10] loss: 5.804
+[1,    20] loss: 5.180
+[1,    30] loss: 4.953
+[1,    40] loss: 4.991
+[1,    50] loss: 4.827
+[1,    60] loss: 4.726
+[1,    70] loss: 4.735
+[1,    80] loss: 4.733
+[1,    90] loss: 4.695
+[1,   100] loss: 4.690
+[1,   110] loss: 4.666
+[1,   120] loss: 4.661
+[1,   130] loss: 4.672
+[1,   140] loss: 4.638
+[1,   150] loss: 4.658
+[1,   160] loss: 4.647
+[1,   170] loss: 4.684
+[1,   180] loss: 4.660
+[1,   190] loss: 4.656
+[1,   200] loss: 4.669
+[1,   210] loss: 4.649
+[1,   220] loss: 4.640
+[1,   230] loss: 4.642
+[1,   240] loss: 4.679
+[1,   250] loss: 4.668
+[1,   260] loss: 4.630
+[1,   270] loss: 4.635
+[1,   280] loss: 4.640
+[1,   290] loss: 4.636
+[1,   300] loss: 4.632
+[1,   310] loss: 4.662
+[1,   320] loss: 4.686
+[1,   330] loss: 4.648
+[1,   340] loss: 4.650
+[1,   350] loss: 4.633
+[1,   360] loss: 4.679
+[1,   370] loss: 4.641
+[1,   380] loss: 4.646
+[1,   390] loss: 4.645
+[1,   400] loss: 4.665
+[1,   410] loss: 4.644
+[1,   420] loss: 4.638
+[1,   430] loss: 4.654
+[1,   440] loss: 4.670
+[1,   450] loss: 4.630
+[1,   460] loss: 4.674
+[1,   470] loss: 4.629
+[1,   480] loss: 4.656
+[1,   490] loss: 4.665
+[1,   500] loss: 4.638
+[1,   510] loss: 4.633
+[1,   520] loss: 4.665
+[1,   530] loss: 4.639
+[1,   540] loss: 4.678
+[1,   550] loss: 4.704
+[1,   560] loss: 4.657
+[1,   570] loss: 4.654
+[1,   580] loss: 4.669
+[1,   590] loss: 4.660
+[1,   600] loss: 4.660
+[1,   610] loss: 4.655
+[1,   620] loss: 4.677
+[1,   630] loss: 4.636
+[1,   640] loss: 4.678
+[1,   650] loss: 4.661
+[1,   660] loss: 4.648
+[1,   670] loss: 4.623
+[1,   680] loss: 4.715
+[1,   690] loss: 4.638
+[1,   700] loss: 4.659
+[2,    10] loss: 4.698
+[2,    20] loss: 4.687
+[2,    30] loss: 4.685
+[2,    40] loss: 4.714
+[2,    50] loss: 4.749
+[2,    60] loss: 4.642
+[2,    70] loss: 4.682
+[2,    80] loss: 4.669
+[2,    90] loss: 4.640
+[2,   100] loss: 4.655
+[2,   110] loss: 4.666
+[2,   120] loss: 4.667
+[2,   130] loss: 4.687
+[2,   140] loss: 4.675
+[2,   150] loss: 4.673
+[2,   160] loss: 4.688
+[2,   170] loss: 4.665
+[2,   180] loss: 4.628
+[2,   190] loss: 4.670
+[2,   200] loss: 4.681
+[2,   210] loss: 4.652
+[2,   220] loss: 4.673
+[2,   230] loss: 4.681
+[2,   240] loss: 4.681
+[2,   250] loss: 4.655
+[2,   260] loss: 4.655
+[2,   270] loss: 4.669
+[2,   280] loss: 4.684
+[2,   290] loss: 4.668
+[2,   300] loss: 4.655
+[2,   310] loss: 4.701
+[2,   320] loss: 4.662
+[2,   330] loss: 4.656
+[2,   340] loss: 4.660
+[2,   350] loss: 4.684
+[2,   360] loss: 4.664
+[2,   370] loss: 4.666
+[2,   380] loss: 4.659
+[2,   390] loss: 4.614
+[2,   400] loss: 4.708
+[2,   410] loss: 4.666
+[2,   420] loss: 4.682
+[2,   430] loss: 4.660
+[2,   440] loss: 4.662
+[2,   450] loss: 4.694
+[2,   460] loss: 4.668
+[2,   470] loss: 4.669
+[2,   480] loss: 4.650
+[2,   490] loss: 4.678
+[2,   500] loss: 4.686
+[2,   510] loss: 4.680
+[2,   520] loss: 4.682
+[2,   530] loss: 4.674
+[2,   540] loss: 4.632
+[2,   550] loss: 4.666
+[2,   560] loss: 4.672
+[2,   570] loss: 4.694
+[2,   580] loss: 4.681
+[2,   590] loss: 4.668
+[2,   600] loss: 4.693
+[2,   610] loss: 4.668
+[2,   620] loss: 4.641
+[2,   630] loss: 4.665
+[2,   640] loss: 4.693
+[2,   650] loss: 4.637
+[2,   660] loss: 4.677
+[2,   670] loss: 4.663
+[2,   680] loss: 4.674
+[2,   690] loss: 4.669
+[2,   700] loss: 4.686
+[3,    10] loss: 4.849
+[3,    20] loss: 4.818
+[3,    30] loss: 4.745
+[3,    40] loss: 4.761
+[3,    50] loss: 4.757
+[3,    60] loss: 4.749
+[3,    70] loss: 4.735
+[3,    80] loss: 4.731
+[3,    90] loss: 4.736
+[3,   100] loss: 4.690
+[3,   110] loss: 4.728
+[3,   120] loss: 4.705
+[3,   130] loss: 4.757
+[3,   140] loss: 4.690
+[3,   150] loss: 4.716
+[3,   160] loss: 4.701
+[3,   170] loss: 4.661
+[3,   180] loss: 4.690
+[3,   190] loss: 4.660
+[3,   200] loss: 4.681
+[3,   210] loss: 4.688
+[3,   220] loss: 4.725
+[3,   230] loss: 4.681
+[3,   240] loss: 4.686
+[3,   250] loss: 4.682
+[3,   260] loss: 4.669
+[3,   270] loss: 4.662
+[3,   280] loss: 4.676
+[3,   290] loss: 4.646
+[3,   300] loss: 4.686
+[3,   310] loss: 4.654
+[3,   320] loss: 4.697
+[3,   330] loss: 4.692
+[3,   340] loss: 4.679
+[3,   350] loss: 4.687
+[3,   360] loss: 4.669
+[3,   370] loss: 4.699
+[3,   380] loss: 4.682
+[3,   390] loss: 4.666
+[3,   400] loss: 4.646
+[3,   410] loss: 4.662
+[3,   420] loss: 4.650
+[3,   430] loss: 4.731
+[3,   440] loss: 4.680
+[3,   450] loss: 4.688
+[3,   460] loss: 4.653
+[3,   470] loss: 4.672
+[3,   480] loss: 4.648
+[3,   490] loss: 4.711
+[3,   500] loss: 4.669
+[3,   510] loss: 4.687
+[3,   520] loss: 4.639
+[3,   530] loss: 4.716
+[3,   540] loss: 4.668
+[3,   550] loss: 4.676
+[3,   560] loss: 4.693
+[3,   570] loss: 4.661
+[3,   580] loss: 4.673
+[3,   590] loss: 4.679
+[3,   600] loss: 4.688
+[3,   610] loss: 4.687
+[3,   620] loss: 4.666
+[3,   630] loss: 4.661
+[3,   640] loss: 4.694
+[3,   650] loss: 4.683
+[3,   660] loss: 4.635
+[3,   670] loss: 4.708
+[3,   680] loss: 4.657
+[3,   690] loss: 4.652
+[3,   700] loss: 4.679
+[4,    10] loss: 4.707
+[4,    20] loss: 4.738
+[4,    30] loss: 4.713
+[4,    40] loss: 4.681
+[4,    50] loss: 4.703
+[4,    60] loss: 4.685
+[4,    70] loss: 4.682
+[4,    80] loss: 4.703
+[4,    90] loss: 4.684
+[4,   100] loss: 4.690
+[4,   110] loss: 4.659
+[4,   120] loss: 4.704
+[4,   130] loss: 4.653
+[4,   140] loss: 4.662
+[4,   150] loss: 4.696
+[4,   160] loss: 4.655
+[4,   170] loss: 4.714
+[4,   180] loss: 4.660
+[4,   190] loss: 4.667
+[4,   200] loss: 4.696
+[4,   210] loss: 4.644
+[4,   220] loss: 4.704
+[4,   230] loss: 4.665
+[4,   240] loss: 4.662
+[4,   250] loss: 4.687
+[4,   260] loss: 4.668
+[4,   270] loss: 4.678
+[4,   280] loss: 4.665
+[4,   290] loss: 4.662
+[4,   300] loss: 4.685
+[4,   310] loss: 4.671
+[4,   320] loss: 4.687
+[4,   330] loss: 4.659
+[4,   340] loss: 4.691
+[4,   350] loss: 4.659
+[4,   360] loss: 4.700
+[4,   370] loss: 4.663
+[4,   380] loss: 4.667
+[4,   390] loss: 4.661
+[4,   400] loss: 4.711
+[4,   410] loss: 4.675
+[4,   420] loss: 4.659
+[4,   430] loss: 4.666
+[4,   440] loss: 4.704
+[4,   450] loss: 4.655
+[4,   460] loss: 4.672
+[4,   470] loss: 4.669
+[4,   480] loss: 4.674
+[4,   490] loss: 4.668
+[4,   500] loss: 4.649
+[4,   510] loss: 4.693
+[4,   520] loss: 4.679
+[4,   530] loss: 4.688
+[4,   540] loss: 4.675
+[4,   550] loss: 4.674
+[4,   560] loss: 4.658
+[4,   570] loss: 4.682
+[4,   580] loss: 4.655
+[4,   590] loss: 4.676
+[4,   600] loss: 4.679
+[4,   610] loss: 4.682
+[4,   620] loss: 4.666
+[4,   630] loss: 4.687
+[4,   640] loss: 4.687
+[4,   650] loss: 4.641
+[4,   660] loss: 4.675
+[4,   670] loss: 4.663
+[4,   680] loss: 4.692
+[4,   690] loss: 4.635
+[4,   700] loss: 4.664
+[5,    10] loss: 4.758
+[5,    20] loss: 4.741
+[5,    30] loss: 4.790
+[5,    40] loss: 4.689
+[5,    50] loss: 4.666
+[5,    60] loss: 4.704
+[5,    70] loss: 4.706
+[5,    80] loss: 4.702
+[5,    90] loss: 4.716
+[5,   100] loss: 4.705
+[5,   110] loss: 4.675
+[5,   120] loss: 4.684
+[5,   130] loss: 4.676
+[5,   140] loss: 4.673
+[5,   150] loss: 4.668
+[5,   160] loss: 4.639
+[5,   170] loss: 4.730
+[5,   180] loss: 4.673
+[5,   190] loss: 4.679
+[5,   200] loss: 4.704
+[5,   210] loss: 4.697
+[5,   220] loss: 4.665
+[5,   230] loss: 4.649
+[5,   240] loss: 4.724
+[5,   250] loss: 4.661
+[5,   260] loss: 4.664
+[5,   270] loss: 4.702
+[5,   280] loss: 4.683
+[5,   290] loss: 4.681
+[5,   300] loss: 4.680
+[5,   310] loss: 4.720
+[5,   320] loss: 4.644
+[5,   330] loss: 4.703
+[5,   340] loss: 4.688
+[5,   350] loss: 4.681
+[5,   360] loss: 4.703
+[5,   370] loss: 4.660
+[5,   380] loss: 4.689
+[5,   390] loss: 4.668
+[5,   400] loss: 4.655
+[5,   410] loss: 4.731
+[5,   420] loss: 4.680
+[5,   430] loss: 4.680
+[5,   440] loss: 4.674
+[5,   450] loss: 4.675
+[5,   460] loss: 4.652
+[5,   470] loss: 4.679
+[5,   480] loss: 4.690
+[5,   490] loss: 4.682
+[5,   500] loss: 4.682
+[5,   510] loss: 4.671
+[5,   520] loss: 4.709
+[5,   530] loss: 4.690
+[5,   540] loss: 4.688
+[5,   550] loss: 4.690
+[5,   560] loss: 4.690
+[5,   570] loss: 4.653
+[5,   580] loss: 4.652
+[5,   590] loss: 4.679
+[5,   600] loss: 4.668
+[5,   610] loss: 4.721
+[5,   620] loss: 4.632
+[5,   630] loss: 4.646
+[5,   640] loss: 4.702
+[5,   650] loss: 4.658
+[5,   660] loss: 4.662
+[5,   670] loss: 4.722
+[5,   680] loss: 4.667
+[5,   690] loss: 4.668
+[5,   700] loss: 4.638
+[6,    10] loss: 4.744
+[6,    20] loss: 4.768
+[6,    30] loss: 4.728
+[6,    40] loss: 4.683
+[6,    50] loss: 4.655
+[6,    60] loss: 4.767
+[6,    70] loss: 4.714
+[6,    80] loss: 4.721
+[6,    90] loss: 4.705
+[6,   100] loss: 4.701
+[6,   110] loss: 4.679
+[6,   120] loss: 4.710
+[6,   130] loss: 4.720
+[6,   140] loss: 4.683
+[6,   150] loss: 4.709
+[6,   160] loss: 4.721
+[6,   170] loss: 4.734
+[6,   180] loss: 4.700
+[6,   190] loss: 4.630
+[6,   200] loss: 4.688
+[6,   210] loss: 4.713
+[6,   220] loss: 4.710
+[6,   230] loss: 4.670
+[6,   240] loss: 4.709
+[6,   250] loss: 4.674
+[6,   260] loss: 4.704
+[6,   270] loss: 4.673
+[6,   280] loss: 4.682
+[6,   290] loss: 4.688
+[6,   300] loss: 4.677
+[6,   310] loss: 4.673
+[6,   320] loss: 4.677
+[6,   330] loss: 4.674
+[6,   340] loss: 4.703
+[6,   350] loss: 4.714
+[6,   360] loss: 4.658
+[6,   370] loss: 4.718
+[6,   380] loss: 4.718
+[6,   390] loss: 4.666
+[6,   400] loss: 4.710
+[6,   410] loss: 4.717
+[6,   420] loss: 4.682
+[6,   430] loss: 4.663
+[6,   440] loss: 4.699
+[6,   450] loss: 4.663
+[6,   460] loss: 4.661
+[6,   470] loss: 4.692
+[6,   480] loss: 4.712
+[6,   490] loss: 4.654
+[6,   500] loss: 4.706
+[6,   510] loss: 4.679
+[6,   520] loss: 4.682
+[6,   530] loss: 4.682
+[6,   540] loss: 4.689
+[6,   550] loss: 4.696
+[6,   560] loss: 4.661
+[6,   570] loss: 4.672
+[6,   580] loss: 4.660
+[6,   590] loss: 4.708
+[6,   600] loss: 4.679
+[6,   610] loss: 4.731
+[6,   620] loss: 4.673
+[6,   630] loss: 4.695
+[6,   640] loss: 4.676
+[6,   650] loss: 4.691
+[6,   660] loss: 4.707
+[6,   670] loss: 4.693
+[6,   680] loss: 4.686
+[6,   690] loss: 4.674
+[6,   700] loss: 4.664
+[7,    10] loss: 4.657
+[7,    20] loss: 4.833
+[7,    30] loss: 4.744
+[7,    40] loss: 4.752
+[7,    50] loss: 4.769
+[7,    60] loss: 4.681
+[7,    70] loss: 4.699
+[7,    80] loss: 4.746
+[7,    90] loss: 4.718
+[7,   100] loss: 4.733
+[7,   110] loss: 4.664
+[7,   120] loss: 4.664
+[7,   130] loss: 4.710
+[7,   140] loss: 4.696
+[7,   150] loss: 4.700
+[7,   160] loss: 4.721
+[7,   170] loss: 4.734
+[7,   180] loss: 4.729
+[7,   190] loss: 4.676
+[7,   200] loss: 4.702
+[7,   210] loss: 4.717
+[7,   220] loss: 4.724
+[7,   230] loss: 4.701
+[7,   240] loss: 4.707
+[7,   250] loss: 4.687
+[7,   260] loss: 4.701
+[7,   270] loss: 4.699
+[7,   280] loss: 4.693
+[7,   290] loss: 4.668
+[7,   300] loss: 4.661
+[7,   310] loss: 4.736
+[7,   320] loss: 4.696
+[7,   330] loss: 4.675
+[7,   340] loss: 4.698
+[7,   350] loss: 4.674
+[7,   360] loss: 4.733
+[7,   370] loss: 4.659
+[7,   380] loss: 4.741
+[7,   390] loss: 4.673
+[7,   400] loss: 4.724
+[7,   410] loss: 4.657
+[7,   420] loss: 4.702
+[7,   430] loss: 4.659
+[7,   440] loss: 4.691
+[7,   450] loss: 4.687
+[7,   460] loss: 4.670
+[7,   470] loss: 4.679
+[7,   480] loss: 4.695
+[7,   490] loss: 4.728
+[7,   500] loss: 4.704
+[7,   510] loss: 4.675
+[7,   520] loss: 4.743
+[7,   530] loss: 4.677
+[7,   540] loss: 4.671
+[7,   550] loss: 4.675
+[7,   560] loss: 4.692
+[7,   570] loss: 4.670
+[7,   580] loss: 4.697
+[7,   590] loss: 4.658
+[7,   600] loss: 4.660
+[7,   610] loss: 4.697
+[7,   620] loss: 4.681
+[7,   630] loss: 4.674
+[7,   640] loss: 4.681
+[7,   650] loss: 4.674
+[7,   660] loss: 4.644
+[7,   670] loss: 4.747
+[7,   680] loss: 4.687
+[7,   690] loss: 4.677
+[7,   700] loss: 4.720
+[8,    10] loss: 4.683
+[8,    20] loss: 4.706
+[8,    30] loss: 4.685
+[8,    40] loss: 4.644
+[8,    50] loss: 4.734
+[8,    60] loss: 4.728
+[8,    70] loss: 4.686
+[8,    80] loss: 4.685
+[8,    90] loss: 4.680
+[8,   100] loss: 4.682
+[8,   110] loss: 4.675
+[8,   120] loss: 4.693
+[8,   130] loss: 4.682
+[8,   140] loss: 4.721
+[8,   150] loss: 4.657
+[8,   160] loss: 4.661
+[8,   170] loss: 4.698
+[8,   180] loss: 4.684
+[8,   190] loss: 4.681
+[8,   200] loss: 4.714
+[8,   210] loss: 4.690
+[8,   220] loss: 4.680
+[8,   230] loss: 4.653
+[8,   240] loss: 4.699
+[8,   250] loss: 4.651
+[8,   260] loss: 4.692
+[8,   270] loss: 4.673
+[8,   280] loss: 4.689
+[8,   290] loss: 4.675
+[8,   300] loss: 4.633
+[8,   310] loss: 4.724
+[8,   320] loss: 4.693
+[8,   330] loss: 4.700
+[8,   340] loss: 4.692
+[8,   350] loss: 4.688
+[8,   360] loss: 4.677
+[8,   370] loss: 4.687
+[8,   380] loss: 4.640
+[8,   390] loss: 4.671
+[8,   400] loss: 4.717
+[8,   410] loss: 4.696
+[8,   420] loss: 4.669
+[8,   430] loss: 4.702
+[8,   440] loss: 4.705
+[8,   450] loss: 4.713
+[8,   460] loss: 4.658
+[8,   470] loss: 4.689
+[8,   480] loss: 4.659
+[8,   490] loss: 4.656
+[8,   500] loss: 4.717
+[8,   510] loss: 4.667
+[8,   520] loss: 4.696
+[8,   530] loss: 4.682
+[8,   540] loss: 4.697
+[8,   550] loss: 4.706
+[8,   560] loss: 4.697
+[8,   570] loss: 4.689
+[8,   580] loss: 4.671
+[8,   590] loss: 4.659
+[8,   600] loss: 4.661
+[8,   610] loss: 4.681
+[8,   620] loss: 4.656
+[8,   630] loss: 4.703
+[8,   640] loss: 4.690
+[8,   650] loss: 4.666
+[8,   660] loss: 4.709
+[8,   670] loss: 4.695
+[8,   680] loss: 4.654
+[8,   690] loss: 4.680
+[8,   700] loss: 4.704
+[9,    10] loss: 4.706
+[9,    20] loss: 4.709
+[9,    30] loss: 4.683
+[9,    40] loss: 4.713
+[9,    50] loss: 4.678
+[9,    60] loss: 4.694
+[9,    70] loss: 4.682
+[9,    80] loss: 5.014
+[9,    90] loss: 4.832
+[9,   100] loss: 4.868
+[9,   110] loss: 4.754
+[9,   120] loss: 4.714
+[9,   130] loss: 4.694
+[9,   140] loss: 4.665
+[9,   150] loss: 4.722
+[9,   160] loss: 4.713
+[9,   170] loss: 4.713
+[9,   180] loss: 4.690
+[9,   190] loss: 4.708
+[9,   200] loss: 4.654
+[9,   210] loss: 4.683
+[9,   220] loss: 4.691
+[9,   230] loss: 4.689
+[9,   240] loss: 4.709
+[9,   250] loss: 4.667
+[9,   260] loss: 4.705
+[9,   270] loss: 4.692
+[9,   280] loss: 4.710
+[9,   290] loss: 4.704
+[9,   300] loss: 4.691
+[9,   310] loss: 4.679
+[9,   320] loss: 4.651
+[9,   330] loss: 4.746
+[9,   340] loss: 4.675
+[9,   350] loss: 4.690
+[9,   360] loss: 4.658
+[9,   370] loss: 4.678
+[9,   380] loss: 4.668
+[9,   390] loss: 4.711
+[9,   400] loss: 4.697
+[9,   410] loss: 4.709
+[9,   420] loss: 4.678
+[9,   430] loss: 4.672
+[9,   440] loss: 4.658
+[9,   450] loss: 4.682
+[9,   460] loss: 4.716
+[9,   470] loss: 4.692
+[9,   480] loss: 4.675
+[9,   490] loss: 4.677
+[9,   500] loss: 4.686
+[9,   510] loss: 4.647
+[9,   520] loss: 4.674
+[9,   530] loss: 4.667
+[9,   540] loss: 4.696
+[9,   550] loss: 4.667
+[9,   560] loss: 4.718
+[9,   570] loss: 4.644
+[9,   580] loss: 4.716
+[9,   590] loss: 4.671
+[9,   600] loss: 4.683
+[9,   610] loss: 4.674
+[9,   620] loss: 4.727
+[9,   630] loss: 4.697
+[9,   640] loss: 4.673
+[9,   650] loss: 4.679
+[9,   660] loss: 4.697
+[9,   670] loss: 4.674
+[9,   680] loss: 4.669
+[9,   690] loss: 4.687
+[9,   700] loss: 4.649
+[10,    10] loss: 4.676
+[10,    20] loss: 4.694
+[10,    30] loss: 4.690
+[10,    40] loss: 4.705
+[10,    50] loss: 4.698
+[10,    60] loss: 4.710
+[10,    70] loss: 4.661
+[10,    80] loss: 4.702
+[10,    90] loss: 4.721
+[10,   100] loss: 4.665
+[10,   110] loss: 4.661
+[10,   120] loss: 4.684
+[10,   130] loss: 4.711
+[10,   140] loss: 4.688
+[10,   150] loss: 4.677
+[10,   160] loss: 4.665
+[10,   170] loss: 4.699
+[10,   180] loss: 4.646
+[10,   190] loss: 4.677
+[10,   200] loss: 4.760
+[10,   210] loss: 4.710
+[10,   220] loss: 4.714
+[10,   230] loss: 4.688
+[10,   240] loss: 4.671
+[10,   250] loss: 4.663
+[10,   260] loss: 4.679
+[10,   270] loss: 4.670
+[10,   280] loss: 4.682
+[10,   290] loss: 4.691
+[10,   300] loss: 4.671
+[10,   310] loss: 4.690
+[10,   320] loss: 4.667
+[10,   330] loss: 4.688
+[10,   340] loss: 4.669
+[10,   350] loss: 4.717
+[10,   360] loss: 4.685
+[10,   370] loss: 4.717
+[10,   380] loss: 4.681
+[10,   390] loss: 4.669
+[10,   400] loss: 4.705
+[10,   410] loss: 4.690
+[10,   420] loss: 4.662
+[10,   430] loss: 4.683
+[10,   440] loss: 4.687
+[10,   450] loss: 4.683
+[10,   460] loss: 4.692
+[10,   470] loss: 4.657
+[10,   480] loss: 4.715
+[10,   490] loss: 4.655
+[10,   500] loss: 4.686
+[10,   510] loss: 4.655
+[10,   520] loss: 4.700
+[10,   530] loss: 4.650
+[10,   540] loss: 4.715
+[10,   550] loss: 4.680
+[10,   560] loss: 4.666
+[10,   570] loss: 4.677
+[10,   580] loss: 4.692
+[10,   590] loss: 4.697
+[10,   600] loss: 4.719
+[10,   610] loss: 4.694
+[10,   620] loss: 4.674
+[10,   630] loss: 4.655
+[10,   640] loss: 4.690
+[10,   650] loss: 4.682
+[10,   660] loss: 4.650
+[10,   670] loss: 4.691
+[10,   680] loss: 4.678
+[10,   690] loss: 4.707
+[10,   700] loss: 4.682</code></pre>
+</div>
+</div>
+<p>An interesting observation is that there is hardly any drop in training loss as compared to the one with transferred weights, indicating the neural network doesn’t understand image feratures that well yet.</p>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T15:55:03.591952Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T15:55:03.591289Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T15:56:26.273820Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T15:56:26.272962Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T15:55:03.591914Z&quot;}" data-trusted="true" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming the model is already defined and loaded as EfficientNet</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If not, you can load it as follows:</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># model = models.efficientnet_b0(pretrained=False)</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co"># And then load your trained weights if necessary</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the number of input features to the last layer</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>num_ftrs <span class="op">=</span> model.classifier[<span class="dv">1</span>].in_features</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset the last layer for CIFAR-10 classification (10 classes)</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>model.classifier[<span class="dv">1</span>] <span class="op">=</span> nn.Linear(num_ftrs, <span class="dv">10</span>)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Move the model to GPU if available</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> model.to(device)</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss function and optimizer for fine-tuning</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Using Adam optimizer, LR can be adjusted as needed</span></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of epochs for fine-tuning</span></span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>num_fine_tune_epochs <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Fine-tuning training loop</span></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(num_fine_tune_epochs):</span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, data <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader, <span class="dv">0</span>):</span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the inputs and labels</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a>        inputs, labels <span class="op">=</span> data</span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a>        inputs, labels <span class="op">=</span> inputs.to(device), labels.to(device)</span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Zero the parameter gradients</span></span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward pass</span></span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a>        outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> criterion(outputs, labels)</span>
+<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Backward and optimize</span></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Print statistics</span></span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">%</span> <span class="dv">10</span> <span class="op">==</span> <span class="dv">9</span>:  <span class="co"># print every 10 mini-batches</span></span>
+<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'[</span><span class="sc">%d</span><span class="st">, </span><span class="sc">%5d</span><span class="st">] loss: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span></span>
+<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a>                  (epoch <span class="op">+</span> <span class="dv">1</span>, i <span class="op">+</span> <span class="dv">1</span>, running_loss <span class="op">/</span> <span class="dv">10</span>))</span>
+<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a>            running_loss <span class="op">=</span> <span class="fl">0.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1,    10] loss: 2.320
+[1,    20] loss: 2.316
+[1,    30] loss: 2.317
+[1,    40] loss: 2.326
+[1,    50] loss: 2.309
+[1,    60] loss: 2.302
+[1,    70] loss: 2.311
+[2,    10] loss: 2.310
+[2,    20] loss: 2.355
+[2,    30] loss: 2.309
+[2,    40] loss: 2.365
+[2,    50] loss: 2.303
+[2,    60] loss: 2.269
+[2,    70] loss: 2.329
+[3,    10] loss: 2.312
+[3,    20] loss: 2.301
+[3,    30] loss: 2.236
+[3,    40] loss: 2.258
+[3,    50] loss: 2.249
+[3,    60] loss: 2.226
+[3,    70] loss: 2.226
+[4,    10] loss: 2.152
+[4,    20] loss: 2.197
+[4,    30] loss: 2.100
+[4,    40] loss: 2.153
+[4,    50] loss: 2.193
+[4,    60] loss: 2.111
+[4,    70] loss: 2.119
+[5,    10] loss: 2.268
+[5,    20] loss: 2.244
+[5,    30] loss: 2.226
+[5,    40] loss: 2.196
+[5,    50] loss: 2.205
+[5,    60] loss: 2.215
+[5,    70] loss: 2.186
+[6,    10] loss: 2.157
+[6,    20] loss: 2.153
+[6,    30] loss: 2.141
+[6,    40] loss: 2.121
+[6,    50] loss: 2.138
+[6,    60] loss: 2.075
+[6,    70] loss: 2.133
+[7,    10] loss: 2.098
+[7,    20] loss: 2.125
+[7,    30] loss: 2.009
+[7,    40] loss: 2.043
+[7,    50] loss: 2.006
+[7,    60] loss: 2.059
+[7,    70] loss: 2.082
+[8,    10] loss: 2.082
+[8,    20] loss: 1.963
+[8,    30] loss: 2.056
+[8,    40] loss: 2.009
+[8,    50] loss: 1.956
+[8,    60] loss: 2.086
+[8,    70] loss: 2.052
+[9,    10] loss: 2.006
+[9,    20] loss: 1.966
+[9,    30] loss: 2.063
+[9,    40] loss: 2.017
+[9,    50] loss: 2.040
+[9,    60] loss: 2.038
+[9,    70] loss: 1.890
+[10,    10] loss: 2.052
+[10,    20] loss: 1.960
+[10,    30] loss: 1.957
+[10,    40] loss: 2.047
+[10,    50] loss: 1.958
+[10,    60] loss: 2.000
+[10,    70] loss: 1.927
+[11,    10] loss: 1.968
+[11,    20] loss: 1.967
+[11,    30] loss: 1.996
+[11,    40] loss: 2.016
+[11,    50] loss: 1.987
+[11,    60] loss: 1.896
+[11,    70] loss: 2.003
+[12,    10] loss: 1.963
+[12,    20] loss: 1.979
+[12,    30] loss: 1.936
+[12,    40] loss: 1.988
+[12,    50] loss: 1.967
+[12,    60] loss: 1.945
+[12,    70] loss: 1.919
+[13,    10] loss: 1.937
+[13,    20] loss: 1.891
+[13,    30] loss: 2.019
+[13,    40] loss: 1.962
+[13,    50] loss: 1.933
+[13,    60] loss: 1.995
+[13,    70] loss: 1.965
+[14,    10] loss: 1.912
+[14,    20] loss: 1.916
+[14,    30] loss: 1.851
+[14,    40] loss: 1.924
+[14,    50] loss: 1.898
+[14,    60] loss: 1.961
+[14,    70] loss: 1.855
+[15,    10] loss: 1.953
+[15,    20] loss: 1.967
+[15,    30] loss: 1.937
+[15,    40] loss: 1.827
+[15,    50] loss: 1.868
+[15,    60] loss: 1.862
+[15,    70] loss: 1.898
+[16,    10] loss: 1.866
+[16,    20] loss: 1.909
+[16,    30] loss: 1.897
+[16,    40] loss: 1.925
+[16,    50] loss: 1.762
+[16,    60] loss: 1.805
+[16,    70] loss: 1.914
+[17,    10] loss: 1.879
+[17,    20] loss: 1.866
+[17,    30] loss: 1.827
+[17,    40] loss: 1.845
+[17,    50] loss: 1.773
+[17,    60] loss: 1.805
+[17,    70] loss: 1.810
+[18,    10] loss: 1.843
+[18,    20] loss: 1.887
+[18,    30] loss: 1.829
+[18,    40] loss: 1.797
+[18,    50] loss: 1.877
+[18,    60] loss: 1.841
+[18,    70] loss: 1.794
+[19,    10] loss: 1.737
+[19,    20] loss: 1.825
+[19,    30] loss: 1.784
+[19,    40] loss: 1.842
+[19,    50] loss: 1.809
+[19,    60] loss: 1.722
+[19,    70] loss: 1.790
+[20,    10] loss: 1.880
+[20,    20] loss: 1.866
+[20,    30] loss: 1.791
+[20,    40] loss: 1.749
+[20,    50] loss: 1.709
+[20,    60] loss: 1.690
+[20,    70] loss: 1.832
+[21,    10] loss: 1.830
+[21,    20] loss: 1.666
+[21,    30] loss: 1.709
+[21,    40] loss: 1.675
+[21,    50] loss: 1.709
+[21,    60] loss: 1.789
+[21,    70] loss: 1.701
+[22,    10] loss: 1.696
+[22,    20] loss: 1.800
+[22,    30] loss: 1.740
+[22,    40] loss: 1.707
+[22,    50] loss: 1.748
+[22,    60] loss: 1.713
+[22,    70] loss: 1.677
+[23,    10] loss: 1.795
+[23,    20] loss: 1.692
+[23,    30] loss: 1.633
+[23,    40] loss: 1.788
+[23,    50] loss: 1.612
+[23,    60] loss: 1.861
+[23,    70] loss: 1.738
+[24,    10] loss: 1.574
+[24,    20] loss: 1.723
+[24,    30] loss: 1.735
+[24,    40] loss: 1.590
+[24,    50] loss: 1.683
+[24,    60] loss: 1.564
+[24,    70] loss: 1.709
+[25,    10] loss: 1.641
+[25,    20] loss: 1.586
+[25,    30] loss: 1.629
+[25,    40] loss: 1.555
+[25,    50] loss: 1.666
+[25,    60] loss: 1.668
+[25,    70] loss: 1.869</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T15:56:26.276057Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T15:56:26.275226Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T15:56:26.338100Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T15:56:26.337087Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T15:56:26.276019Z&quot;}" data-trusted="true" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>torch.save(model.state_dict(), <span class="st">'./notpretrained.pth'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-01-02T16:05:49.522391Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-01-02T16:05:49.521995Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-01-02T16:06:51.991937Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-01-02T16:06:51.990993Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-01-02T16:05:49.522361Z&quot;}" data-trusted="true" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> DataLoader</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the test_model function</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_model(model, dataloader, device):</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    model.<span class="bu">eval</span>()  <span class="co"># Set the model to evaluation mode</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    total_correct <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>    total_samples <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> inputs, labels <span class="kw">in</span> dataloader:</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>            inputs, labels <span class="op">=</span> inputs.to(device), labels.to(device)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>            outputs <span class="op">=</span> model(inputs)</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>            _, predicted <span class="op">=</span> torch.<span class="bu">max</span>(outputs, <span class="dv">1</span>)</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>            total_samples <span class="op">+=</span> labels.size(<span class="dv">0</span>)</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>            total_correct <span class="op">+=</span> (predicted <span class="op">==</span> labels).<span class="bu">sum</span>().item()</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>    accuracy <span class="op">=</span> total_correct <span class="op">/</span> total_samples</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> accuracy</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a><span class="co"># List of model file paths</span></span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>model_paths <span class="op">=</span> [</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'./cifar10_5percent_scheduler_pretrained_false.pth'</span>,</span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'./cifar10_5percent_adam_pretrained_true.pth'</span>,</span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">'./cifar10_5percent_scheduler_pretrained_true.pth'</span>,</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'./notpretrained.pth'</span>,</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">'./pretrained.pth'</span></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each model</span></span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> model_path <span class="kw">in</span> model_paths:</span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the EfficientNet-B0 model</span></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> models.efficientnet_b0(pretrained<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Modify the classifier for CIFAR-10</span></span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>    num_ftrs <span class="op">=</span> model.classifier[<span class="dv">1</span>].in_features</span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>    model.classifier[<span class="dv">1</span>] <span class="op">=</span> nn.Linear(num_ftrs, <span class="dv">10</span>)</span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load the model weights</span></span>
+<span id="cb38-47"><a href="#cb38-47" aria-hidden="true" tabindex="-1"></a>    model.load_state_dict(torch.load(model_path))</span>
+<span id="cb38-48"><a href="#cb38-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-49"><a href="#cb38-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Move the model to the device (e.g., GPU if available)</span></span>
+<span id="cb38-50"><a href="#cb38-50" aria-hidden="true" tabindex="-1"></a>    device <span class="op">=</span> torch.device(<span class="st">'cuda'</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">'cpu'</span>)</span>
+<span id="cb38-51"><a href="#cb38-51" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> model.to(device)</span>
+<span id="cb38-52"><a href="#cb38-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-53"><a href="#cb38-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Test the model</span></span>
+<span id="cb38-54"><a href="#cb38-54" aria-hidden="true" tabindex="-1"></a>    accuracy <span class="op">=</span> test_model(model, test_loader, device)</span>
+<span id="cb38-55"><a href="#cb38-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-56"><a href="#cb38-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print or store the accuracy for this model</span></span>
+<span id="cb38-57"><a href="#cb38-57" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Model: </span><span class="sc">{</span>model_path<span class="sc">}</span><span class="ss">, Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.2f}</span><span class="ss">%'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: /kaggle/working/cifar10_5percent_scheduler_pretrained_false.pth, Accuracy: 0.40%
+Model: /kaggle/working/cifar10_5percent_adam_pretrained_true.pth, Accuracy: 0.55%
+Model: /kaggle/working/cifar10_5percent_scheduler_pretrained_true.pth, Accuracy: 0.63%
+Model: /kaggle/working/notpretrained.pth, Accuracy: 0.34%
+Model: /kaggle/working/pretrained.pth, Accuracy: 0.48%</code></pre>
+</div>
+</div>
+<p>Observations: * For training on 5% of the dataset best results are achieved when using pretrained model on imagenet that is 63% and 40% if not prior pretraining is done. * After traning on jigsaw images and then finetuning the best accuracy is 48%. This model uses transferred weights from a pretrained efficientnet on imagenet. The one without any transferred weights gets an accuracy of 34%. * Both the techniques achieve well over the baseline accuracy of 10%(random guessing).</p>
+<p>Proposed Solutions to increase accuracy:</p>
+<ul>
+<li><p>By using the gap trick, we pad the input disordered images with zeros to the size of original images. Adopting the gap trick can discourage all the jigsaw puzzle solvers mentioned above from learning lowlevel statistics, and encourage the learning of high-level visuospatial representations of objects.</p></li>
+<li><p>Data Augmentation can help generalising more and improve the self supervised learning.</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
